@@ -64,22 +64,45 @@ document.querySelectorAll('.section').forEach(section => {
   observer.observe(section);
 });
 
+// Initialize EmailJS
+emailjs.init("Ix1CdmtwL6WK8WfAF"); // Reemplaza con tu public key de EmailJS
+
 // Form Submission
 const contactForm = document.querySelector('.contact-form');
 if (contactForm) {
-  contactForm.addEventListener('submit', (e) => {
+  contactForm.addEventListener('submit', async (e) => {
     e.preventDefault();
     
     // Get form data
     const formData = new FormData(contactForm);
-    const data = Object.fromEntries(formData);
+    const data = {
+      from_name: formData.get('name'),
+      from_email: formData.get('email'),
+      message: formData.get('message')
+    };
     
-    // Here you would typically send the data to your backend
-    console.log('Form submitted:', data);
-    
-    // Show success message
-    alert('¡Gracias por tu mensaje! Me pondré en contacto contigo pronto.');
-    contactForm.reset();
+    try {
+      // Show loading state
+      const submitButton = contactForm.querySelector('button[type="submit"]');
+      const originalText = submitButton.textContent;
+      submitButton.textContent = 'Sending...';
+      submitButton.disabled = true;
+
+      // Send email using EmailJS
+      await emailjs.send('AlejandroPiPortfolio', 'template_vnt432a', data);
+      
+      // Show success message
+      alert('Thank you for your message! I will get back to you soon.');
+      contactForm.reset();
+    } catch (error) {
+      console.error('Error sending message:', error);
+      alert('Sorry, there was an error sending the message. Please try again.');
+    } finally {
+      // Reset button state
+      const submitButton = contactForm.querySelector('button[type="submit"]');
+      submitButton.textContent = 'Send Message';
+      submitButton.disabled = false;
+    }
   });
 }
 
