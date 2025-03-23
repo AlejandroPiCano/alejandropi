@@ -67,6 +67,7 @@ document.querySelectorAll('.section').forEach(section => {
 // Initialize EmailJS
 emailjs.init("Ix1CdmtwL6WK8WfAF"); // Reemplaza con tu public key de EmailJS
 
+
 // Form Submission
 const contactForm = document.querySelector('.contact-form');
 if (contactForm) {
