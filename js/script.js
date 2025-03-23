@@ -23,10 +23,10 @@ themeToggle.addEventListener('click', () => {
 function updateThemeButton(theme) {
   if (theme === 'dark') {
     themeIcon.className = 'fas fa-moon';
-    themeText.textContent = 'Modo Oscuro';
+    themeText.textContent = 'Dark Mode';
   } else {
     themeIcon.className = 'fas fa-sun';
-    themeText.textContent = 'Modo Claro';
+    themeText.textContent = 'Light Mode';
   }
 }
 
