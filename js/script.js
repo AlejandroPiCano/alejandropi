@@ -1,34 +1,33 @@
 // Theme Toggle
-const themeToggle = document.getElementById('theme-toggle');
-const body = document.body;
-const themeIcon = themeToggle.querySelector('i');
-const themeText = themeToggle.querySelector('span');
-
-// Check for saved theme preference
-const savedTheme = localStorage.getItem('theme') || 'dark';
-body.classList.add(savedTheme);
-updateThemeButton(savedTheme);
-
-themeToggle.addEventListener('click', () => {
-  const isDark = body.classList.contains('dark');
-  const newTheme = isDark ? 'light' : 'dark';
+document.addEventListener('DOMContentLoaded', () => {
+  const themeToggle = document.getElementById('theme-toggle');
+  const themeIcon = themeToggle.querySelector('i');
+  const themeText = themeToggle.querySelector('span');
   
-  body.classList.remove(isDark ? 'dark' : 'light');
-  body.classList.add(newTheme);
-  
-  localStorage.setItem('theme', newTheme);
-  updateThemeButton(newTheme);
-});
+  // Check for saved theme preference or use light mode as default
+  const savedTheme = localStorage.getItem('theme') || 'light';
+  document.body.className = savedTheme;
+  updateThemeUI(savedTheme);
 
-function updateThemeButton(theme) {
-  if (theme === 'dark') {
-    themeIcon.className = 'fas fa-moon';
-    themeText.textContent = 'Dark Mode';
-  } else {
-    themeIcon.className = 'fas fa-sun';
-    themeText.textContent = 'Light Mode';
+  themeToggle.addEventListener('click', () => {
+    const currentTheme = document.body.className;
+    const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+    
+    document.body.className = newTheme;
+    localStorage.setItem('theme', newTheme);
+    updateThemeUI(newTheme);
+  });
+
+  function updateThemeUI(theme) {
+    if (theme === 'dark') {
+      themeIcon.className = 'fas fa-sun';
+      themeText.textContent = 'Light Mode';
+    } else {
+      themeIcon.className = 'fas fa-moon';
+      themeText.textContent = 'Dark Mode';
+    }
   }
-}
+});
 
 // Smooth Scroll
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {

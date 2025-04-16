@@ -55,8 +55,8 @@ body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   line-height: 1.6;
   transition: var(--transition);
-  background-color: var(--dark-bg);
-  color: var(--dark-text);
+  background-color: var(--light-bg);
+  color: var(--light-text);
 }
 
 /* Header & Navigation */
@@ -65,7 +65,7 @@ header {
   top: 0;
   left: 0;
   right: 0;
-  background-color: rgba(26, 26, 26, 0.95);
+  background-color: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(10px);
   z-index: 1000;
   padding: 1rem 2rem;
@@ -93,7 +93,7 @@ nav {
 }
 
 .nav-link {
-  color: var(--dark-text);
+  color: var(--light-text);
   text-decoration: none;
   font-weight: 500;
   transition: var(--transition);
@@ -118,7 +118,7 @@ nav {
 .theme-toggle {
   background: none;
   border: none;
-  color: var(--dark-text);
+  color: var(--light-text);
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -129,7 +129,7 @@ nav {
 }
 
 .theme-toggle:hover {
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: rgba(0, 0, 0, 0.1);
 }
 
 /* Main Content */
@@ -224,7 +224,7 @@ main {
 .stat-item {
   text-align: center;
   padding: 2rem;
-  background-color: var(--dark-card);
+  background-color: var(--light-card);
   border-radius: 10px;
   transition: var(--transition);
 }
@@ -249,7 +249,7 @@ main {
 }
 
 .skill-category {
-  background-color: var(--dark-card);
+  background-color: var(--light-card);
   padding: 2rem;
   border-radius: 10px;
   transition: var(--transition);
@@ -300,7 +300,7 @@ main {
 }
 
 .project-card {
-  background: var(--card-bg);
+  background: var(--light-card);
   border-radius: 10px;
   overflow: hidden;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -384,7 +384,7 @@ main {
   align-items: center;
   gap: 1rem;
   padding: 1.5rem;
-  background-color: var(--dark-card);
+  background-color: var(--light-card);
   border-radius: 10px;
   transition: var(--transition);
 }
@@ -412,10 +412,10 @@ main {
 .form-group textarea {
   width: 100%;
   padding: 1rem;
-  background-color: var(--dark-card);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background-color: var(--light-card);
+  border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 5px;
-  color: var(--dark-text);
+  color: var(--light-text);
   transition: var(--transition);
 }
 
@@ -432,7 +432,7 @@ main {
 
 /* Footer */
 footer {
-  background-color: var(--dark-card);
+  background-color: var(--light-card);
   padding: 2rem;
   text-align: center;
 }
@@ -441,17 +441,33 @@ footer {
   max-width: 1200px;
   margin: 0 auto;
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
   align-items: center;
+  gap: 1rem;
+}
+
+.footer-content p {
+  margin: 0;
+  color: var(--text-color);
+}
+
+.footer-content p:first-child {
+  font-weight: 500;
+}
+
+.footer-content p:nth-child(2) {
+  font-size: 0.9rem;
+  opacity: 0.8;
 }
 
 .social-links {
   display: flex;
   gap: 1rem;
+  margin-top: 0.5rem;
 }
 
 .social-links a {
-  color: var(--dark-text);
+  color: var(--light-text);
   font-size: 1.5rem;
   transition: var(--transition);
 }
@@ -460,43 +476,90 @@ footer {
   color: var(--primary-color);
 }
 
-/* Light Mode */
-body.light {
+/* Light Mode (Default) */
+body {
   background-color: var(--light-bg);
   color: var(--light-text);
 }
 
-body.light header {
+body header {
   background-color: rgba(255, 255, 255, 0.95);
 }
 
-body.light .nav-link {
+body .nav-link {
   color: var(--light-text);
 }
 
-body.light .theme-toggle {
+body .theme-toggle {
   color: var(--light-text);
 }
 
-body.light .theme-toggle:hover {
+body .theme-toggle:hover {
   background-color: rgba(0, 0, 0, 0.1);
 }
 
-body.light .stat-item,
-body.light .skill-category,
-body.light .project-card,
-body.light .contact-item,
-body.light .form-group input,
-body.light .form-group textarea {
+body .stat-item,
+body .skill-category,
+body .project-card,
+body .contact-item,
+body .form-group input,
+body .form-group textarea {
   background-color: var(--light-card);
 }
 
-body.light footer {
+body footer {
   background-color: var(--light-card);
 }
 
-body.light .social-links a {
+body .social-links a {
   color: var(--light-text);
+}
+
+body a {
+  color: var(--light-text);
+}
+
+/* Dark Mode */
+body.dark {
+  background-color: var(--dark-bg);
+  color: var(--dark-text);
+}
+
+body.dark header {
+  background-color: rgba(26, 26, 26, 0.95);
+}
+
+body.dark .nav-link {
+  color: var(--dark-text);
+}
+
+body.dark .theme-toggle {
+  color: var(--dark-text);
+}
+
+body.dark .theme-toggle:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+body.dark .stat-item,
+body.dark .skill-category,
+body.dark .project-card,
+body.dark .contact-item,
+body.dark .form-group input,
+body.dark .form-group textarea {
+  background-color: var(--dark-card);
+}
+
+body.dark footer {
+  background-color: var(--dark-card);
+}
+
+body.dark .social-links a {
+  color: var(--dark-text);
+}
+
+body.dark a {
+  color: var(--dark-text);
 }
 
 /* Responsive Design */
@@ -535,9 +598,4 @@ body.light .social-links a {
   .project-card {
     max-width: 100%;
   }
-}
-  
-
-a {
-color: white;
 }
