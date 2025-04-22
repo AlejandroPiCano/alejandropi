@@ -126,4 +126,63 @@ document.addEventListener('DOMContentLoaded', () => {
     item.classList.add('fade-in');
   });
 });
+
+// Matrix Effect
+const canvas = document.getElementById('matrix-canvas');
+const ctx = canvas.getContext('2d');
+
+// Set canvas size
+function resizeCanvas() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+
+// Initial resize
+resizeCanvas();
+
+// Handle window resize
+window.addEventListener('resize', resizeCanvas);
+
+// Matrix characters
+const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*()';
+const charArray = chars.split('');
+
+// Font size and columns
+const fontSize = 16;
+const columns = canvas.width / fontSize;
+
+// Array to store the y position of each column
+const drops = [];
+for (let i = 0; i < columns; i++) {
+  drops[i] = 1;
+}
+
+// Draw the Matrix effect
+function draw() {
+  // Set semi-transparent black background
+  ctx.fillStyle = 'rgba(0, 0, 0, 0.1)';
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+  // Set text color and font
+  ctx.fillStyle = 'rgba(0, 255, 0, 0.3)';
+  ctx.font = fontSize + 'px monospace';
+
+  // Draw characters
+  for (let i = 0; i < drops.length; i++) {
+    // Random character
+    const char = charArray[Math.floor(Math.random() * charArray.length)];
+    
+    // Draw the character
+    ctx.fillText(char, i * fontSize, drops[i] * fontSize);
+
+    // Move the drop down
+    if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+      drops[i] = 0;
+    }
+    drops[i]++;
+  }
+}
+
+// Animation loop
+setInterval(draw, 50);
   
