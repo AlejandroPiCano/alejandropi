@@ -67,20 +67,52 @@ document.querySelectorAll('.section').forEach(section => {
 emailjs.init("Ix1CdmtwL6WK8WfAF"); // Reemplaza con tu public key de EmailJS
 
 
+// --- CAPTCHA Initialization ---
+function loadCaptcha() {
+  if (window.grecaptcha) {
+    grecaptcha.render('captcha-container', {
+      'sitekey': '6Lel-CErAAAAAA41QSfwuAB2pjHCusfi5nq126qm' // Demo key, replace with your own for production
+    });
+  }
+}
+
+if (document.getElementById('captcha-container')) {
+  const script = document.createElement('script');
+  script.src = 'https://www.google.com/recaptcha/api.js?onload=loadCaptcha&render=explicit';
+  script.async = true;
+  script.defer = true;
+  document.body.appendChild(script);
+}
+
 // Form Submission
 const contactForm = document.querySelector('.contact-form');
 if (contactForm) {
   contactForm.addEventListener('submit', async (e) => {
     e.preventDefault();
-    
-    // Get form data
+
+    // CAPTCHA validation
+    const captchaResponse = window.grecaptcha ? grecaptcha.getResponse() : '';
+    if (!captchaResponse) {
+      alert('Please complete the CAPTCHA.');
+      return;
+    }
+
+    // Consent validation
+    const consentChecked = document.getElementById('consent').checked;
+    if (!consentChecked) {
+      alert('You must consent to data processing.');
+      return;
+    }
+
+    // Get form data and sanitize
     const formData = new FormData(contactForm);
+    const sanitize = str => (str || '').replace(/[<>"'%;()&+]/g, '');
     const data = {
-      from_name: formData.get('name'),
-      from_email: formData.get('email'),
-      message: formData.get('message')
+      from_name: sanitize(formData.get('name')),
+      from_email: sanitize(formData.get('email')),
+      message: sanitize(formData.get('message'))
     };
-    
+
     try {
       // Show loading state
       const submitButton = contactForm.querySelector('button[type="submit"]');
@@ -94,6 +126,7 @@ if (contactForm) {
       // Show success message
       alert('Thank you for your message! I will get back to you soon.');
       contactForm.reset();
+      if (window.grecaptcha) grecaptcha.reset();
     } catch (error) {
       console.error('Error sending message:', error);
       alert('Sorry, there was an error sending the message. Please try again.');
@@ -185,4 +218,3 @@ function draw() {
 
 // Animation loop
 setInterval(draw, 50);
-  
