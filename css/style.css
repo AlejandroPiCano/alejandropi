@@ -136,6 +136,119 @@ nav {
   background-color: rgba(0, 0, 0, 0.1);
 }
 
+/* Hamburger menu styles */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 2001;
+}
+.hamburger .bar {
+  display: block;
+  width: 28px;
+  height: 3px;
+  margin: 4px 0;
+  background-color: var(--primary-color);
+  transition: 0.3s;
+  border-radius: 2px;
+}
+
+@media (max-width: 768px) {
+  .hamburger {
+    display: flex;
+    right: 1.5rem;
+    position: absolute;
+    top: 15px;
+  }
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    gap: 1.2rem;
+    position: absolute;
+    top: 70px;
+    right: 2rem;
+    background: var(--light-card);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+    border-radius: 10px;
+    padding: 2rem 2.5rem;
+    z-index: 2000;
+    align-items: center;
+  }
+  .nav-links li {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+  .nav-links .nav-link {
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+    display: inline-block;
+  }
+  .nav-links .theme-toggle {
+    margin-top: 0;
+    justify-content: center;
+  }
+  .nav-links.active {
+    display: flex;
+  }
+  .theme-toggle {
+    width: 100%;
+    justify-content: flex-start;
+    margin-top: 0;
+    margin-left: 0;
+    margin-right: 0;
+    display: flex;
+  }
+  #theme-toggle {
+    display: none;
+  }
+  .nav-links .theme-toggle {
+    display: flex !important;
+    width: 100%;
+    justify-content: flex-start;
+    margin-top: 0;
+    margin-left: 0;
+    margin-right: 0;
+    background: none;
+    border: none;
+    color: var(--light-text);
+    font-size: 1rem;
+    box-shadow: none;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 0;
+  }
+  .nav-links .theme-toggle i {
+    font-size: 1.3rem;
+  }
+  .theme-toggle {
+    display: none;
+  }
+  .nav-links .theme-toggle {
+    display: flex;
+  }
+}
+
+@media (min-width: 769px) {
+  .nav-links .theme-toggle {
+    display: none !important;
+  }
+  #theme-toggle {
+    display: flex;
+  }
+}
+
+body.dark .nav-links {
+  background: var(--dark-card);
+}
+
 /* Main Content */
 main {
   margin-top: 80px;

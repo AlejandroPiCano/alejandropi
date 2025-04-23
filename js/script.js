@@ -29,6 +29,25 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 
+// Move dark mode toggle into nav menu in mobile
+function moveThemeToggle() {
+  const themeToggle = document.getElementById('theme-toggle');
+  const mobileLi = document.getElementById('theme-toggle-mobile-li');
+  if (window.innerWidth <= 768) {
+    if (themeToggle && mobileLi && !mobileLi.contains(themeToggle)) {
+      mobileLi.appendChild(themeToggle);
+    }
+  } else {
+    // Move back outside nav-links if needed
+    const nav = document.querySelector('nav');
+    if (themeToggle && nav && !nav.contains(themeToggle)) {
+      nav.appendChild(themeToggle);
+    }
+  }
+}
+window.addEventListener('resize', moveThemeToggle);
+document.addEventListener('DOMContentLoaded', moveThemeToggle);
+
 // Smooth Scroll
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   anchor.addEventListener('click', function (e) {
@@ -151,6 +170,16 @@ if (contactForm) {
       submitButton.textContent = 'Send Message';
       submitButton.disabled = false;
     }
+  });
+}
+
+// Hamburger menu toggle
+const hamburger = document.getElementById('hamburger-menu');
+const navLinks = document.getElementById('main-nav');
+if (hamburger && navLinks) {
+  hamburger.addEventListener('click', function() {
+    const isOpen = navLinks.classList.toggle('active');
+    hamburger.setAttribute('aria-expanded', isOpen);
   });
 }
 
