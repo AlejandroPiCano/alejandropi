@@ -149,6 +149,7 @@ nav {
   cursor: pointer;
   z-index: 2001;
 }
+
 .hamburger .bar {
   display: block;
   width: 28px;
@@ -159,13 +160,14 @@ nav {
   border-radius: 2px;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1490px) {
   .hamburger {
     display: flex;
     right: 1.5rem;
     position: absolute;
     top: 15px;
   }
+  
   .nav-links {
     display: none;
     flex-direction: column;
@@ -180,24 +182,29 @@ nav {
     z-index: 2000;
     align-items: center;
   }
+  
   .nav-links li {
     width: 100%;
     display: flex;
     justify-content: center;
   }
+  
   .nav-links .nav-link {
     width: 100%;
     text-align: center;
     justify-content: center;
     display: inline-block;
   }
+  
   .nav-links .theme-toggle {
     margin-top: 0;
     justify-content: center;
   }
+  
   .nav-links.active {
     display: flex;
   }
+  
   .theme-toggle {
     width: 100%;
     justify-content: flex-start;
@@ -206,9 +213,11 @@ nav {
     margin-right: 0;
     display: flex;
   }
+  
   #theme-toggle {
     display: none;
   }
+  
   .nav-links .theme-toggle {
     display: flex !important;
     width: 100%;
@@ -225,15 +234,17 @@ nav {
     gap: 0.5rem;
     padding: 0.5rem 0;
   }
+  
   .theme-toggle {
     display: none;
   }
+  
   .nav-links .theme-toggle {
     display: flex;
   }
 }
 
-@media (min-width: 769px) {
+@media (min-width: 1491px) {
   #theme-toggle-desktop {
     display: flex !important;
     position: absolute;
@@ -243,11 +254,13 @@ nav {
     gap: 0.5rem;
     z-index: 1001;
   }
+  
   .nav-links .theme-toggle {
     display: none !important;
   }
 }
-@media (max-width: 768px) {
+
+@media (max-width: 1490px) {
   #theme-toggle-desktop {
     display: none !important;
   }
