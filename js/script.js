@@ -117,6 +117,10 @@ function showToast(message, type = 'success') {
   const toast = document.createElement('div');
   toast.className = `toast toast-${type}`;
   toast.textContent = message;
+  if (type === 'success') {
+    toast.style.background = '#19ff19';
+    toast.style.color = '#222';
+  }
   toastContainer.appendChild(toast);
   setTimeout(() => {
     toast.style.opacity = '0';
