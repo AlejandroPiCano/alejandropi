@@ -84,6 +84,21 @@ if (document.getElementById('captcha-container')) {
   document.body.appendChild(script);
 }
 
+// --- Toast Notification Utility ---
+function showToast(message, type = 'success') {
+  const toastContainer = document.getElementById('toast-container');
+  if (!toastContainer) return;
+  const toast = document.createElement('div');
+  toast.className = `toast toast-${type}`;
+  toast.textContent = message;
+  toastContainer.appendChild(toast);
+  setTimeout(() => {
+    toast.style.opacity = '0';
+    toast.style.transform = 'translateY(-20px)';
+    setTimeout(() => toast.remove(), 400);
+  }, 3500);
+}
+
 // Form Submission
 const contactForm = document.querySelector('.contact-form');
 if (contactForm) {
@@ -93,14 +108,14 @@ if (contactForm) {
     // CAPTCHA validation
     const captchaResponse = window.grecaptcha ? grecaptcha.getResponse() : '';
     if (!captchaResponse) {
-      alert('Please complete the CAPTCHA.');
+      showToast('Please complete the CAPTCHA.', 'error');
       return;
     }
 
     // Consent validation
     const consentChecked = document.getElementById('consent').checked;
     if (!consentChecked) {
-      alert('You must consent to data processing.');
+      showToast('You must consent to data processing.', 'error');
       return;
     }
 
@@ -124,12 +139,12 @@ if (contactForm) {
       await emailjs.send('AlejandroPiPortfolio', 'template_vnt432a', data);
       
       // Show success message
-      alert('Thank you for your message! I will get back to you soon.');
+      showToast('Thank you for your message! I will get back to you soon.', 'success');
       contactForm.reset();
       if (window.grecaptcha) grecaptcha.reset();
     } catch (error) {
       console.error('Error sending message:', error);
-      alert('Sorry, there was an error sending the message. Please try again.');
+      showToast('Sorry, there was an error sending the message. Please try again.', 'error');
     } finally {
       // Reset button state
       const submitButton = contactForm.querySelector('button[type="submit"]');
