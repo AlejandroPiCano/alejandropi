@@ -225,9 +225,6 @@ nav {
     gap: 0.5rem;
     padding: 0.5rem 0;
   }
-  .nav-links .theme-toggle i {
-    font-size: 1.3rem;
-  }
   .theme-toggle {
     display: none;
   }
@@ -237,11 +234,22 @@ nav {
 }
 
 @media (min-width: 769px) {
+  #theme-toggle-desktop {
+    display: flex !important;
+    position: absolute;
+    right: 2.5rem;
+    top: 30px;
+    align-items: center;
+    gap: 0.5rem;
+    z-index: 1001;
+  }
   .nav-links .theme-toggle {
     display: none !important;
   }
-  #theme-toggle {
-    display: flex;
+}
+@media (max-width: 768px) {
+  #theme-toggle-desktop {
+    display: none !important;
   }
 }
 
