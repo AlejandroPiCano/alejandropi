@@ -1,31 +1,38 @@
-// Theme Toggle
+// Theme Toggle (support for both desktop and mobile)
 document.addEventListener('DOMContentLoaded', () => {
-  const themeToggle = document.getElementById('theme-toggle');
-  const themeIcon = themeToggle.querySelector('i');
-  const themeText = themeToggle.querySelector('span');
-  
-  // Check for saved theme preference or use light mode as default
-  const savedTheme = localStorage.getItem('theme') || 'light';
+  const themeToggles = [
+    document.getElementById('theme-toggle-desktop'),
+    document.getElementById('theme-toggle')
+  ].filter(Boolean);
+  const themeIconClass = {
+    dark: 'fas fa-sun',
+    light: 'fas fa-moon'
+  };
+  const themeTextValue = {
+    dark: 'Light Mode',
+    light: 'Dark Mode'
+  };
+  // Get saved theme or default to light
+  let savedTheme = localStorage.getItem('theme') || 'light';
   document.body.className = savedTheme;
   updateThemeUI(savedTheme);
-
-  themeToggle.addEventListener('click', () => {
-    const currentTheme = document.body.className;
-    const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-    
-    document.body.className = newTheme;
-    localStorage.setItem('theme', newTheme);
-    updateThemeUI(newTheme);
+  // Add event listeners to all theme toggles
+  themeToggles.forEach(toggle => {
+    toggle.addEventListener('click', () => {
+      let currentTheme = document.body.className;
+      let newTheme = currentTheme === 'light' ? 'dark' : 'light';
+      document.body.className = newTheme;
+      localStorage.setItem('theme', newTheme);
+      updateThemeUI(newTheme);
+    });
   });
-
   function updateThemeUI(theme) {
-    if (theme === 'dark') {
-      themeIcon.className = 'fas fa-sun';
-      themeText.textContent = 'Light Mode';
-    } else {
-      themeIcon.className = 'fas fa-moon';
-      themeText.textContent = 'Dark Mode';
-    }
+    themeToggles.forEach(toggle => {
+      const icon = toggle.querySelector('i');
+      const text = toggle.querySelector('span');
+      if (icon) icon.className = themeIconClass[theme];
+      if (text) text.textContent = themeTextValue[theme];
+    });
   }
 });
 
