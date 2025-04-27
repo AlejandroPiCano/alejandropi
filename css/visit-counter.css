@@ -1,0 +1,13 @@
+.visit-counter {
+  font-size: 0.95rem;
+  color: var(--secondary-color);
+  opacity: 0.7;
+  text-align: right;
+  margin-top: 0.5rem;
+  user-select: none;
+  transition: opacity 0.2s;
+}
+
+.visit-counter:hover {
+  opacity: 1;
+}
