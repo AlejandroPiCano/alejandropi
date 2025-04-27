@@ -897,4 +897,14 @@ body.dark a {
     align-items: center;
     gap: 0.5rem;
   }
+
+  .section-title, h2 {
+    font-size: 1.4rem !important;
+    line-height: 1.2;
+  }
+
+  h2 {
+    will-change: transform;
+    transition: transform 0.2s;
+  }
 }

@@ -311,7 +311,7 @@ function draw() {
 // Animation loop
 setInterval(draw, 50);
 
-// Escalar los h2 al hacer scroll, similar al efecto de Apple
+// Scale h2 on scroll, similar to Apple's effect
 function scaleH2OnScroll() {
   const h2s = document.querySelectorAll('h2');
   const windowHeight = window.innerHeight;
@@ -319,8 +319,8 @@ function scaleH2OnScroll() {
   h2s.forEach(h2 => {
     const rect = h2.getBoundingClientRect();
     const visible = Math.max(0, Math.min(rect.bottom, windowHeight) - Math.max(rect.top, 0));
-    // Ajusta el rango de escala para que la diferencia de tamaño sea un poco menos notoria
-    const scale = 1 + 0.8 * (visible / rect.height); 
+    // Max scale 1.8
+    const scale = 1 + 0.5 * (visible / rect.height); 
     h2.style.transform = `scale(${Math.min(scale, 1.8)})`; 
   });
 }
