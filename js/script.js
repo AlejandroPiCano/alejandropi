@@ -155,6 +155,7 @@ if (contactForm) {
     const data = {
       from_name: sanitize(formData.get('name')),
       from_email: sanitize(formData.get('email')),
+      from_phone: sanitize(formData.get('phone')),
       message: sanitize(formData.get('message'))
     };
 
