@@ -189,31 +189,11 @@ if (hamburger && navLinks) {
     const isOpen = navLinks.classList.toggle('active');
     hamburger.setAttribute('aria-expanded', isOpen);
     // Add overlay when menu is open
-    if (isOpen) {
-      createMenuOverlay();
-    } else {
-      removeMenuOverlay();
-    }
+  
   });
 }
 
-function createMenuOverlay() {
-  let overlay = document.createElement('div');
-  overlay.id = 'menu-overlay';
-  overlay.style.position = 'fixed';
-  overlay.style.top = '0';
-  overlay.style.left = '0';
-  overlay.style.width = '100vw';
-  overlay.style.height = '100vh';
-  overlay.style.background = 'rgba(0,0,0,0.25)';
-  overlay.style.zIndex = '1999';
-  overlay.addEventListener('click', closeMobileMenu);
-  document.body.appendChild(overlay);
-}
-function removeMenuOverlay() {
-  const overlay = document.getElementById('menu-overlay');
-  if (overlay) overlay.remove();
-}
+
 function closeMobileMenu() {
   navLinks.classList.remove('active');
   hamburger.setAttribute('aria-expanded', false);
