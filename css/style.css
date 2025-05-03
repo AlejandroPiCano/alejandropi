@@ -683,8 +683,8 @@ h2 {
 }
 
 .toast.toast-success {
-  background: var(--primary-color);
-  color: #222;
+  background: #63782d;
+  color: #fff;
 }
 
 @keyframes fadeInToast {
