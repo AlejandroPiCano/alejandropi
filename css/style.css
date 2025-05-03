@@ -474,6 +474,10 @@ h2 {
   flex: 0 0 auto;
   margin: 0;
   height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
 }
 
 .carousel-btn {
@@ -483,7 +487,7 @@ h2 {
   background: rgba(0, 0, 0, 0.5);
   color: white;
   border: none;
-  padding: 1rem;
+  padding: 0.5rem;
   cursor: pointer;
   z-index: 10;
   transition: background 0.3s ease;
@@ -502,11 +506,11 @@ h2 {
 }
 
 .prev-btn {
-  left: 1rem;
+  left: 2rem;
 }
 
 .next-btn {
-  right: 1rem;
+  right: 2rem;
 }
 
 @media (max-width: 768px) {
@@ -584,10 +588,14 @@ h2 {
 
 .web-projects,
 .game-projects {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
+  display: flex;
+  justify-content: center;
   margin-bottom: 2rem;
+}
+
+.game-projects .carousel-container {
+  width: 100%;
+  max-width: 1200px;
 }
 
 .project-card {
@@ -596,6 +604,10 @@ h2 {
   overflow: hidden;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 1000px;
+  height: 100%;
+  min-height: 500px;
 }
 
 .project-card:hover {
@@ -605,23 +617,19 @@ h2 {
 
 .project-image {
   width: 100%;
-  aspect-ratio: 16/9;
+  height: 400px;
   position: relative;
   overflow: hidden;
   background: #f0f0f0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
-.project-image::before {
-  content: '';
+.project-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
   display: block;
-  padding-top: 56.25%; /* 16:9 */
-}
-
-.project-image {
-  position: relative;
+  transition: transform 0.3s;
 }
 
 .project-img {
@@ -641,6 +649,7 @@ h2 {
   font-size: 1.4rem;
   margin: 1rem;
   color: var(--primary-color);
+  text-align: center;
 }
 
 .project-card p {
@@ -648,6 +657,7 @@ h2 {
   color: var(--primary-color);
   font-size: 0.9rem;
   line-height: 1.5;
+  text-align: center;
 }
 
 .project-tech {
@@ -655,6 +665,7 @@ h2 {
   flex-wrap: wrap;
   gap: 0.5rem;
   margin: 0 1rem 1rem;
+  justify-content: center;
 }
 
 .project-tech span {
