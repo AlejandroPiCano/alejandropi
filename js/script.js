@@ -254,6 +254,61 @@ function resizeCanvas() {
 // Initial resize
 resizeCanvas();
 
+// Carousel setup function
+function setupCarousel(carousel) {
+  const track = carousel.querySelector('.carousel-track');
+  const slides = carousel.querySelectorAll('.carousel-slide');
+  const prevBtn = carousel.querySelector('.prev-btn');
+  const nextBtn = carousel.querySelector('.next-btn');
+  
+  let currentSlide = 0;
+  const slideWidth = slides[0].offsetWidth;
+  
+  function updateCarousel() {
+    track.style.transform = `translateX(-${currentSlide * slideWidth}px)`;
+  }
+  
+  function nextSlide() {
+    currentSlide = (currentSlide + 1) % slides.length;
+    updateCarousel();
+  }
+  
+  function prevSlide() {
+    currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+    updateCarousel();
+  }
+  
+  prevBtn.addEventListener('click', prevSlide);
+  nextBtn.addEventListener('click', nextSlide);
+  
+  // Auto-scroll every 3 seconds
+  let autoScrollInterval = setInterval(nextSlide, 3000);
+  
+  // Pause auto-scroll on hover
+  carousel.addEventListener('mouseenter', () => {
+    clearInterval(autoScrollInterval);
+  });
+  
+  carousel.addEventListener('mouseleave', () => {
+    autoScrollInterval = setInterval(nextSlide, 3000);
+  });
+  
+  // Update slide width on window resize
+  function updateSlideWidth() {
+    slideWidth = slides[0].offsetWidth;
+    updateCarousel();
+  }
+  
+  window.addEventListener('resize', updateSlideWidth);
+  
+  // Initialize
+  updateCarousel();
+}
+
+// Initialize carousels
+const carousels = document.querySelectorAll('.carousel');
+carousels.forEach(setupCarousel);
+
 // Handle window resize
 window.addEventListener('resize', resizeCanvas);
 
