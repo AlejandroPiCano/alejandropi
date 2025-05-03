@@ -810,6 +810,7 @@ body.dark .contact-item,
 body.dark .form-group input,
 body.dark .form-group textarea {
   background-color: var(--dark-card);
+  color: #fff;
 }
 
 body.dark footer {
