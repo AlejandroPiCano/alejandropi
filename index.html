@@ -3,24 +3,83 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Alejandro M. Pi Cano - Full Stack Developer with over 14 years of experience in enterprise solutions">
-  <meta name="keywords" content=".NET, Backend Developer, C#, ASP.NET Core, Microservices, Docker, Azure">
-  <title>Alejandro M. Pi Cano | Full Stack Developer</title>
+  
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Alejandro M. Pi Cano - Full Stack Developer with 14+ years of experience in enterprise solutions, microservices, and cloud technologies. Specializing in .NET, C#, React, and Azure.">
+  <meta name="keywords" content="Full Stack Developer, .NET Developer, C# Developer, ASP.NET Core, Microservices, Docker, Azure, React, Angular, Enterprise Solutions, Backend Developer, Frontend Developer">
+  <meta name="author" content="Alejandro M. Pi Cano">
+  <meta name="robots" content="index, follow, max-snippet:150, max-image-preview:large">
+  <link rel="canonical" href="https://alejandropi.is-a.dev/">
+  
+  <!-- Open Graph Meta Tags -->
+  <meta property="og:title" content="Alejandro M. Pi Cano | Full Stack Developer">
+  <meta property="og:description" content="Full Stack Developer with 14+ years of experience creating enterprise solutions with .NET, React, and cloud technologies.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://alejandropi.is-a.dev/">
+  <meta property="og:image" content="https://alejandropi.is-a.dev/images/og-image.jpg">
+  <meta property="og:locale" content="en_US">
+  
+  <!-- Twitter Card Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Alejandro M. Pi Cano | Full Stack Developer">
+  <meta name="twitter:description" content="Full Stack Developer with 14+ years of experience creating enterprise solutions.">
+  <meta name="twitter:image" content="https://alejandropi.is-a.dev/images/og-image.jpg">
+  
+  <title>Alejandro M. Pi Cano | Full Stack Developer - .NET, React, Azure Expert</title>
+  
+  <!-- Preconnect for performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+  
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@400;500;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  
+  <!-- Structured Data (JSON-LD) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Alejandro M. Pi Cano",
+    "jobTitle": "Full Stack Developer",
+    "description": "Full Stack Developer with over 15 years of experience in enterprise solutions, specializing in .NET, C#, React, and Azure cloud technologies.",
+    "url": "https://alejandropi.is-a.dev/",
+    "email": "alejandro.pi87@gmail.com",
+    "telephone": "+34608963593",
+    "sameAs": [
+      "https://www.linkedin.com/in/alejandro-m-pi-cano",
+      "https://github.com/AlejandroPiCano"
+    ],
+    "knowsAbout": [
+      "C#", ".NET Core", "ASP.NET", "Microservices", "Docker", "Azure", 
+      "JavaScript", "TypeScript", "React", "Angular", "SQL Server", 
+      "PostgreSQL", "MongoDB", "Redis", "CI/CD", "Git"
+    ],
+    "alumniOf": {
+      "@type": "Organization",
+      "name": "Software Development"
+    }
+  }
+  </script>
 </head>
 <body class="dark">
-  <div id="toast-container"></div>
-  <header>
-    <nav>
+  <!-- Skip to main content link for accessibility -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+  
+  <div id="toast-container" role="status" aria-live="polite" aria-atomic="true"></div>
+  <header role="banner">
+    <nav role="navigation" aria-label="Main navigation">
       <div class="logo">
         <span class="logo-text">Alejandro M. Pi Cano</span>
-        <div class="beta-badge">BETA</div>
+        <div class="beta-badge" aria-label="Beta version">BETA</div>
       </div>
-      <button class="hamburger" id="hamburger-menu" aria-label="Open main menu" aria-expanded="false" aria-controls="main-nav">
-        <span class="bar"></span>
-        <span class="bar"></span>
-        <span class="bar"></span>
+      <button class="hamburger" id="hamburger-menu" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="main-nav">
+        <span class="bar" aria-hidden="true"></span>
+        <span class="bar" aria-hidden="true"></span>
+        <span class="bar" aria-hidden="true"></span>
       </button>
       <ul class="nav-links" id="main-nav">
         <li><a href="#home" class="nav-link">Home</a></li>
@@ -29,27 +88,27 @@
         <li><a href="#projects" class="nav-link">Projects</a></li>
         <li><a href="#contact" class="nav-link">Contact</a></li>
         <li id="theme-toggle-mobile-li">
-          <button id="theme-toggle" class="theme-toggle">
-            <i class="fas fa-moon"></i>
+          <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode">
+            <i class="fas fa-moon" aria-hidden="true"></i>
             <span>Dark Mode</span>
           </button>
         </li>
       </ul>
+      <button id="theme-toggle-desktop" class="theme-toggle" aria-label="Toggle dark mode">
+        <i class="fas fa-moon" aria-hidden="true"></i>
+        <span>Dark Mode</span>
+      </button>
     </nav>
-    <button id="theme-toggle-desktop" class="theme-toggle">
-      <i class="fas fa-moon"></i>
-      <span>Dark Mode</span>
-    </button>
   </header>
 
-  <main>
-    <section id="home" class="hero-section">
-      <canvas id="matrix-canvas"></canvas>
+  <main id="main-content" role="main">
+    <section id="home" class="hero-section" aria-label="Hero section">
+      <canvas id="matrix-canvas" aria-hidden="true"></canvas>
       <div class="hero-content">
         <div class="title-container">
           <h1 class="hero-title">Full Stack Developer</h1>
         </div>
-        <p class="hero-subtitle">Developer with over 14 years of experience creating enterprise solutions</p>
+        <p class="hero-subtitle">Developer with over 15 years of experience creating enterprise solutions</p>
         <div class="hero-cta">
           <a href="#projects" class="btn btn-primary">View Projects</a>
           <a href="#contact" class="btn btn-secondary">Contact</a>
@@ -57,11 +116,11 @@
       </div>
     </section>
 
-    <section id="about" class="section">
-      <h2 class="section-title">About Me</h2>
+    <section id="about" class="section" aria-labelledby="about-heading">
+      <h2 id="about-heading" class="section-title">About Me</h2>
       <div class="about-content">
         <div class="about-text">
-          <p>I am a passionate developer with over 14 years of experience in creating enterprise solutions. My focus is on developing robust, scalable, and maintainable applications that solve real business problems.</p>
+          <p>I am a passionate developer with over 15 years of experience in creating enterprise solutions. My focus is on developing robust, scalable, and maintainable applications that solve real business problems.</p>
           <p>I specialize in modern architectures, microservices, and cloud technologies, always maintaining best development practices and clean, efficient code.</p>
         </div>
         <div class="about-stats">
@@ -81,8 +140,8 @@
       </div>
     </section>
 
-    <section id="skills" class="section">
-      <h2 class="section-title">Skills</h2>
+    <section id="skills" class="section" aria-labelledby="skills-heading">
+      <h2 id="skills-heading" class="section-title">Skills</h2>
       <div class="skills-grid">
         <div class="skill-category">
           <h3>Backend</h3>
@@ -102,6 +161,7 @@
             <li><i class="fab fa-js"></i> JavaScript / TypeScript</li>
             <li><i class="fab fa-html5"></i> HTML5 / CSS3</li>
             <li><i class="fab fa-react"></i> React JS</li>
+            <li><i class="fab fa-react"></i> Next.js</li>
             <li><i class="fab fa-angular"></i> Angular</li>
             <li><i class="fab fa-bootstrap"></i> Bootstrap</li>
              <li><i class="fab fa-js"></i> jQuery</li>
@@ -120,20 +180,20 @@
       </div>
     </section>
 
-    <section id="projects" class="section">
-      <h2 class="section-title">Featured Projects</h2>
+    <section id="projects" class="section" aria-labelledby="projects-heading">
+      <h2 id="projects-heading" class="section-title">Featured Projects</h2>
       <div class="projects-container">
         <div class="project-category">
           <h3>Web Development</h3>
           <div class="carousel-container">
             <div class="carousel">
-              <button class="carousel-btn prev-btn" aria-label="Previous slide">
-                <i class="fas fa-chevron-left"></i>
+              <button class="carousel-btn prev-btn" aria-label="Previous project">
+                <i class="fas fa-chevron-left" aria-hidden="true"></i>
               </button>
-              <button class="carousel-btn next-btn" aria-label="Next slide">
-                <i class="fas fa-chevron-right"></i>
+              <button class="carousel-btn next-btn" aria-label="Next project">
+                <i class="fas fa-chevron-right" aria-hidden="true"></i>
               </button>
-              <div class="carousel-track">
+              <div class="carousel-track" role="region" aria-live="polite">
                 <div class="carousel-slide">
                   <div class="project-card">
                     <a href="https://clinicasteticap.netlify.app" target="_blank" class="project-link">
@@ -231,6 +291,9 @@
                   </div>
                 </div>
               </div>
+              <button class="carousel-btn next-btn" aria-label="Next project">
+                <i class="fas fa-chevron-right" aria-hidden="true"></i>
+              </button>
             </div>
           </div>
         </div>
@@ -239,10 +302,10 @@
           <h3>Game Development</h3>
           <div class="carousel-container">
             <div class="carousel">
-              <button class="carousel-btn prev-btn" aria-label="Previous slide">
-                <i class="fas fa-chevron-left"></i>
+              <button class="carousel-btn prev-btn" aria-label="Previous game project">
+                <i class="fas fa-chevron-left" aria-hidden="true"></i>
               </button>
-              <div class="carousel-track">
+              <div class="carousel-track" role="region" aria-live="polite">
                 <div class="carousel-slide">
                   <div class="project-card">
                     <a href="https://www.thegreatapps.com/apps/monster-vs-archers" target="_blank" class="project-link">
@@ -340,8 +403,8 @@
                   </div>
                 </div>
               </div>
-              <button class="carousel-btn next-btn" aria-label="Next slide">
-                <i class="fas fa-chevron-right"></i>
+              <button class="carousel-btn next-btn" aria-label="Next game project">
+                <i class="fas fa-chevron-right" aria-hidden="true"></i>
               </button>
             </div>
           </div>
@@ -349,74 +412,85 @@
       </div>
     </section>
 
-    <section id="contact" class="section">
-      <h2 class="section-title">Contact</h2>
+    <section id="contact" class="section" aria-labelledby="contact-heading">
+      <h2 id="contact-heading" class="section-title">Contact</h2>
       <div class="contact-container">
         <div class="contact-info">
           <div class="contact-item">
-            <i class="fas fa-phone"></i>
+            <i class="fas fa-phone" aria-hidden="true"></i>
             <div class="contact-details">
               <h3>Phone</h3>
-              <p>+34 608963593</p>
+              <p><a href="tel:+34608963593">+34 608 963 593</a></p>
             </div>
           </div>
           <div class="contact-item">
-            <i class="fas fa-envelope"></i>
+            <i class="fas fa-envelope" aria-hidden="true"></i>
             <div class="contact-details">
               <h3>Email</h3>
               <p><a href="mailto:alejandro.pi87@gmail.com">alejandro.pi87@gmail.com</a></p>
             </div>
           </div>
           <div class="contact-item">
-            <i class="fab fa-linkedin"></i>
+            <i class="fab fa-linkedin" aria-hidden="true"></i>
             <div class="contact-details">
               <h3>LinkedIn</h3>
-              <p><a href="https://www.linkedin.com/in/alejandro-m-pi-cano" target="_blank">View my profile</a></p>
+              <p><a href="https://www.linkedin.com/in/alejandro-m-pi-cano" target="_blank" rel="noopener noreferrer">View my profile<span class="visually-hidden"> (opens in new tab)</span></a></p>
             </div>
           </div>
           <div class="contact-item">
-            <i class="fab fa-github"></i>
+            <i class="fab fa-github" aria-hidden="true"></i>
             <div class="contact-details">
               <h3>GitHub</h3>
-              <p><a href="https://github.com/AlejandroPiCano" target="_blank">github.com/AlejandroPiCano</a></p>
+              <p><a href="https://github.com/AlejandroPiCano" target="_blank" rel="noopener noreferrer">github.com/AlejandroPiCano<span class="visually-hidden"> (opens in new tab)</span></a></p>
             </div>
           </div>
         </div>
-        <form class="contact-form">
+        <form class="contact-form" aria-label="Contact form">
           <div class="form-group">
-            <input type="text" name="name" placeholder="Name" required>
+            <label for="name" class="visually-hidden">Your Name</label>
+            <input type="text" id="name" name="name" placeholder="Name" required aria-required="true" autocomplete="name">
           </div>
           <div class="form-group">
-            <input type="tel" name="phone" placeholder="Phone" required>
+            <label for="phone" class="visually-hidden">Your Phone Number</label>
+            <input type="tel" id="phone" name="phone" placeholder="Phone" required aria-required="true" autocomplete="tel">
           </div>
           <div class="form-group">
-            <input type="email" name="email" placeholder="Email" required>
+            <label for="email" class="visually-hidden">Your Email Address</label>
+            <input type="email" id="email" name="email" placeholder="Email" required aria-required="true" autocomplete="email">
           </div>
           <div class="form-group">
-            <textarea name="message" placeholder="Message" required></textarea>
+            <label for="message" class="visually-hidden">Your Message</label>
+            <textarea id="message" name="message" placeholder="Message" required aria-required="true"></textarea>
           </div>
           <div class="form-group">
-            <!-- CAPTCHA widget -->
-            <div id="captcha-container"></div>
+            <div id="captcha-container" aria-label="CAPTCHA verification"></div>
           </div>
           <div class="form-group consent-group">
-            <input type="checkbox" id="consent" name="consent" required>
+            <input type="checkbox" id="consent" name="consent" required aria-required="true">
             <label for="consent">I consent to the processing of my data for the purpose of managing the contact request.</label>
           </div>
-          <button type="submit" class="btn btn-primary">Send Message</button>
+          <div class="form-submit-wrapper">
+            <button type="submit" class="btn btn-primary">Send Message</button>
+          </div>
         </form>
       </div>
     </section>
   </main>
 
-  <footer>
+  <footer role="contentinfo">
     <div class="footer-content">
-      <p>&copy; 2025 Alejandro M. Pi Cano. All rights reserved.</p>      
-      <p>Made with <span style="color:#e25555">❤</span> by Alejandro Pi Cano</p>
-      <div class="social-links">
-        <a href="https://www.linkedin.com/in/alejandro-m-pi-cano" target="_blank"><i class="fab fa-linkedin"></i></a>
-        <a href="https://github.com/AlejandroPiCano" target="_blank"><i class="fab fa-github"></i></a>
-      </div>
+      <p>&copy; <span id="current-year"></span> Alejandro M. Pi Cano. All rights reserved.</p>      
+      <p>Made with <span style="color:#e25555" aria-label="love">❤</span> by Alejandro Pi Cano</p>
+      <nav aria-label="Social media links">
+        <div class="social-links">
+          <a href="https://www.linkedin.com/in/alejandro-m-pi-cano" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profile">
+            <i class="fab fa-linkedin" aria-hidden="true"></i>
+          </a>
+          <a href="https://github.com/AlejandroPiCano" target="_blank" rel="noopener noreferrer" aria-label="GitHub profile">
+            <i class="fab fa-github" aria-hidden="true"></i>
+          </a>
+        </div>
+      </nav>
     </div>
   </footer>
 

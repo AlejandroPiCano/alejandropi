@@ -1,0 +1,14 @@
+# robots.txt for Alejandro M. Pi Cano Portfolio
+User-agent: *
+Allow: /
+
+# Disallow admin or private areas (if any in future)
+# Disallow: /admin/
+
+# Allow crawling of CSS and JS for proper rendering
+Allow: /css/
+Allow: /js/
+Allow: /images/
+
+# Sitemap location
+Sitemap: https://alejandropi.is-a.dev/sitemap.xml
