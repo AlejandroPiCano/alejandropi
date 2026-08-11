@@ -1,0 +1,11 @@
+[
+  {
+    "date": "2026-08-11",
+    "verb": "redesign (in-place)",
+    "macrostructure": "existing IA preserved (hero / about / skills / projects / contact)",
+    "theme": "custom",
+    "theme_axes": "light+dark paper / high-contrast-serif display / chromatic-green accent",
+    "enrichment": "none",
+    "brief": "Alejandro Pi portfolio · de-slop pass + desktop/mobile responsive fixes"
+  }
+]

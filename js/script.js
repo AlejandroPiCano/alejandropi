@@ -73,25 +73,6 @@ function announceToScreenReader(message) {
   }, 1000);
 }
 
-// Move dark mode toggle into nav menu in mobile
-function moveThemeToggle() {
-  const themeToggle = document.getElementById('theme-toggle');
-  const mobileLi = document.getElementById('theme-toggle-mobile-li');
-  if (window.innerWidth <= 768) {
-    if (themeToggle && mobileLi && !mobileLi.contains(themeToggle)) {
-      mobileLi.appendChild(themeToggle);
-    }
-  } else {
-    // Move back outside nav-links if needed
-    const nav = document.querySelector('nav');
-    if (themeToggle && nav && !nav.contains(themeToggle)) {
-      nav.appendChild(themeToggle);
-    }
-  }
-}
-window.addEventListener('resize', moveThemeToggle);
-document.addEventListener('DOMContentLoaded', moveThemeToggle);
-
 // ============================================
 // SMOOTH SCROLL WITH FOCUS MANAGEMENT
 // ============================================
@@ -144,35 +125,10 @@ window.addEventListener('scroll', () => {
   lastScroll = currentScroll;
 });
 
-// ============================================
-// SCROLL ANIMATIONS
-// ============================================
-const observerOptions = {
-  threshold: 0.1,
-  rootMargin: '0px 0px -50px 0px'
-};
-
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('animate');
-      
-      // Announce section to screen readers
-      const heading = entry.target.querySelector('h2');
-      if (heading) {
-        announceToScreenReader(`Entering ${heading.textContent} section`);
-      }
-    }
-  });
-}, observerOptions);
-
-// Observe sections
-document.querySelectorAll('.section').forEach(section => {
-  observer.observe(section);
-});
-
-// Initialize EmailJS
-emailjs.init("Ix1CdmtwL6WK8WfAF"); // Reemplaza con tu public key de EmailJS
+// Initialize EmailJS (guarded — CDN blockers must not kill the page script)
+if (typeof emailjs !== 'undefined') {
+  emailjs.init("Ix1CdmtwL6WK8WfAF");
+}
 
 
 // --- CAPTCHA Initialization ---
@@ -348,7 +304,7 @@ if (hamburger && navLinks) {
 
   // Close menu when clicking outside
   document.addEventListener('click', function(e) {
-    if (window.innerWidth <= 1490 && navLinks.classList.contains('active')) {
+    if (navLinks.classList.contains('active')) {
       const isClickInsideMenu = navLinks.contains(e.target);
       const isClickInsideHamburger = hamburger.contains(e.target);
       
@@ -378,40 +334,6 @@ if (hamburger && navLinks) {
     });
   });
 }
-
-// Add animation classes to elements
-document.addEventListener('DOMContentLoaded', () => {
-  // Add animation classes to project cards
-  document.querySelectorAll('.project-card').forEach((card, index) => {
-    card.style.animationDelay = `${index * 0.2}s`;
-    card.classList.add('fade-in');
-  });
-  
-  // Add animation classes to skill categories
-  document.querySelectorAll('.skill-category').forEach((category, index) => {
-    category.style.animationDelay = `${index * 0.2}s`;
-    category.classList.add('fade-in');
-  });
-  
-  // Add animation classes to contact items
-  document.querySelectorAll('.contact-item').forEach((item, index) => {
-    item.style.animationDelay = `${index * 0.2}s`;
-    item.classList.add('fade-in');
-  });
-});
-
-// Matrix Effect
-const canvas = document.getElementById('matrix-canvas');
-const ctx = canvas.getContext('2d');
-
-// Set canvas size
-function resizeCanvas() {
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
-}
-
-// Initial resize
-resizeCanvas();
 
 // ============================================
 // ACCESSIBLE CAROUSEL WITH DOT INDICATORS
@@ -485,8 +407,11 @@ function setupCarousel(carousel) {
     });
   }
 
-  // Auto-scroll every 5 seconds
+  // Auto-scroll every 5 seconds (skipped when the user prefers reduced motion)
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
   function startAutoScroll() {
+    if (prefersReducedMotion) return;
     autoScrollInterval = setInterval(() => nextSlide(false), 5000);
   }
 
@@ -542,67 +467,3 @@ document.addEventListener('DOMContentLoaded', () => {
   const carousels = document.querySelectorAll('.carousel');
   carousels.forEach(setupCarousel);
 });
-
-// Handle window resize
-window.addEventListener('resize', resizeCanvas);
-
-// Matrix characters
-const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*()';
-const charArray = chars.split('');
-
-// Font size and columns
-const fontSize = 16;
-const columns = canvas.width / fontSize;
-
-// Array to store the y position of each column
-const drops = [];
-for (let i = 0; i < columns; i++) {
-  drops[i] = 1;
-}
-
-// Draw the Matrix effect
-function draw() {
-  // Set semi-transparent black background
-  ctx.fillStyle = 'rgba(0, 0, 0, 0.1)';
-  ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-  // Set text color and font
-  ctx.fillStyle = 'rgba(0, 255, 0, 0.3)';
-  ctx.font = fontSize + 'px monospace';
-
-  // Draw characters
-  for (let i = 0; i < drops.length; i++) {
-    // Random character
-    const char = charArray[Math.floor(Math.random() * charArray.length)];
-    
-    // Draw the character
-    ctx.fillText(char, i * fontSize, drops[i] * fontSize);
-
-    // Move the drop down
-    if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
-      drops[i] = 0;
-    }
-    drops[i]++;
-  }
-}
-
-// Animation loop
-setInterval(draw, 50);
-
-// Scale h2 on scroll, similar to Apple's effect
-function scaleH2OnScroll() {
-  const h2s = document.querySelectorAll('h2');
-  const windowHeight = window.innerHeight;
-
-  h2s.forEach(h2 => {
-    const rect = h2.getBoundingClientRect();
-    const visible = Math.max(0, Math.min(rect.bottom, windowHeight) - Math.max(rect.top, 0));
-    // Max scale 1.8
-    const scale = 1 + 0.5 * (visible / rect.height); 
-    h2.style.transform = `scale(${Math.min(scale, 1.8)})`; 
-  });
-}
-
-window.addEventListener('scroll', scaleH2OnScroll);
-window.addEventListener('resize', scaleH2OnScroll);
-document.addEventListener('DOMContentLoaded', scaleH2OnScroll);

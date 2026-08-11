@@ -1,0 +1,94 @@
+/* Hallmark · tokens — Alejandro Pi portfolio
+ * Brand: deep emerald + gold · Playfair Display / DM Sans / JetBrains Mono
+ * Light theme is :root default; body.dark swaps the semantic layer.
+ */
+
+:root {
+  /* Brand anchors */
+  --color-accent:        oklch(46% 0.10 158);
+  --color-accent-strong: oklch(54% 0.11 158);
+  --color-accent-ink:    oklch(98% 0.005 158);
+  --color-gold:          oklch(74% 0.114 92);
+
+  /* Semantic — light */
+  --color-paper:     oklch(97.5% 0.006 130);
+  --color-surface:   oklch(99% 0.003 130);
+  --color-surface-2: oklch(95.5% 0.008 130);
+  --color-ink:       oklch(23% 0.015 158);
+  --color-ink-2:     oklch(45% 0.015 158);
+  --color-rule:      oklch(88% 0.01 140);
+  --color-focus:     oklch(46% 0.10 158);
+  --color-error:     oklch(55% 0.19 27);
+
+  /* Hero band — dark in both themes (brand-preserving) */
+  --color-hero-bg:    oklch(20% 0.025 160);
+  --color-hero-ink:   oklch(97% 0.005 140);
+  --color-hero-ink-2: oklch(78% 0.02 145);
+  --color-hero-rule:  oklch(38% 0.02 160);
+
+  /* Accent variants for permanently-dark surfaces (hero band) */
+  --color-accent-on-dark:        oklch(68% 0.115 158);
+  --color-accent-strong-on-dark: oklch(74% 0.12 158);
+  --color-accent-ink-on-dark:    oklch(16% 0.02 160);
+  --color-ink-on-color:          oklch(98% 0.005 158);
+
+  /* Typography */
+  --font-display: 'Playfair Display', Georgia, 'Times New Roman', serif;
+  --font-body: 'DM Sans', system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, 'Cascadia Mono', monospace;
+
+  --text-sm: 0.875rem;
+  --text-md: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.375rem;
+  --text-2xl: 1.75rem;
+  --text-3xl: clamp(2rem, 3vw + 1rem, 3.25rem);
+  --text-display: clamp(2.75rem, 6vw + 1rem, 5.5rem);
+
+  /* 4-pt spacing scale */
+  --space-2xs: 0.25rem;
+  --space-xs: 0.5rem;
+  --space-sm: 0.75rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+  --space-2xl: 3rem;
+  --space-3xl: 4.5rem;
+  --space-4xl: 7rem;
+
+  /* Motion */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-short: 180ms;
+  --dur-med: 320ms;
+
+  /* Shape */
+  --radius-card: 14px;
+  --radius-input: 10px;
+  --radius-pill: 999px;
+  --rule-hairline: 1px;
+
+  /* Elevation (kept tight and dark) */
+  --shadow-sm: 0 1px 3px oklch(20% 0.02 160 / 0.10);
+  --shadow-md: 0 6px 20px oklch(20% 0.02 160 / 0.14);
+
+  /* Z scale */
+  --z-nav: 100;
+  --z-menu: 200;
+  --z-toast: 300;
+}
+
+body.dark {
+  --color-paper:     oklch(18% 0.015 160);
+  --color-surface:   oklch(22% 0.016 160);
+  --color-surface-2: oklch(26% 0.016 160);
+  --color-ink:       oklch(94% 0.008 145);
+  --color-ink-2:     oklch(70% 0.015 150);
+  --color-rule:      oklch(32% 0.015 158);
+  --color-accent:        oklch(68% 0.115 158);
+  --color-accent-strong: oklch(74% 0.12 158);
+  --color-accent-ink:    oklch(16% 0.02 160);
+  --color-focus:     oklch(74% 0.114 92);
+  --shadow-sm: 0 1px 3px oklch(0% 0 0 / 0.35);
+  --shadow-md: 0 6px 20px oklch(0% 0 0 / 0.45);
+}

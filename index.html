@@ -35,6 +35,7 @@
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@400;500;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
   
+  <link rel="stylesheet" href="css/tokens.css">
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   
@@ -104,6 +105,47 @@
   <main id="main-content" role="main">
     <section id="home" class="hero-section" aria-label="Hero section">
       <canvas id="matrix-canvas" aria-hidden="true"></canvas>
+      <script>
+        (function () {
+          var canvas = document.getElementById('matrix-canvas');
+          if (!canvas) return;
+          var ctx = canvas.getContext('2d');
+          var chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*()';
+          var fontSize = 16;
+          var drops = [];
+
+          function resize() {
+            var parent = canvas.parentElement;
+            canvas.width = parent.clientWidth || window.innerWidth;
+            canvas.height = parent.clientHeight || window.innerHeight;
+            var columns = Math.ceil(canvas.width / fontSize);
+            drops = [];
+            for (var i = 0; i < columns; i++) {
+              drops[i] = Math.random() * -40;
+            }
+          }
+
+          function draw() {
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.08)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = '#00ff41';
+            ctx.font = fontSize + 'px monospace';
+            for (var i = 0; i < drops.length; i++) {
+              var char = chars.charAt(Math.floor(Math.random() * chars.length));
+              ctx.fillText(char, i * fontSize, drops[i] * fontSize);
+              if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                drops[i] = 0;
+              }
+              drops[i]++;
+            }
+          }
+
+          resize();
+          setInterval(draw, 50);
+          window.addEventListener('resize', resize);
+          window.addEventListener('load', resize);
+        })();
+      </script>
       <div class="hero-content">
         <div class="title-container">
           <h1 class="hero-title">Full Stack Developer</h1>
@@ -160,7 +202,8 @@
           <ul class="skill-list">
             <li><i class="fab fa-js"></i> JavaScript / TypeScript</li>
             <li><i class="fab fa-html5"></i> HTML5 / CSS3</li>
-            <li><i class="fab fa-react"></i> React JS</li>
+            <li><i class="fab fa-react"></i> React</li>
+            <li><i class="fab fa-react"></i> React Native</li>
             <li><i class="fab fa-react"></i> Next.js</li>
             <li><i class="fab fa-angular"></i> Angular</li>
             <li><i class="fab fa-bootstrap"></i> Bootstrap</li>
@@ -189,9 +232,6 @@
             <div class="carousel">
               <button class="carousel-btn prev-btn" aria-label="Previous project">
                 <i class="fas fa-chevron-left" aria-hidden="true"></i>
-              </button>
-              <button class="carousel-btn next-btn" aria-label="Next project">
-                <i class="fas fa-chevron-right" aria-hidden="true"></i>
               </button>
               <div class="carousel-track" role="region" aria-live="polite">
                 <div class="carousel-slide">
