@@ -8,6 +8,11 @@
   var fontSize = 16;
   var drops = [];
 
+  // Colors come from css/tokens.css so the rain always matches the brand.
+  var styles = getComputedStyle(canvas);
+  var glyphColor = styles.getPropertyValue('--color-matrix-glyph').trim() || '#e6a54c';
+  var fadeColor = styles.getPropertyValue('--color-matrix-fade').trim() || 'rgba(20, 15, 9, 0.09)';
+
   function resize() {
     var parent = canvas.parentElement;
     canvas.width = parent.clientWidth || window.innerWidth;
@@ -20,10 +25,10 @@
   }
 
   function draw() {
-    ctx.fillStyle = 'rgba(0, 0, 0, 0.08)';
+    ctx.fillStyle = fadeColor;
     ctx.fillRect(0, 0, canvas.width, canvas.height);
-    ctx.fillStyle = '#00ff41';
-    ctx.font = fontSize + 'px monospace';
+    ctx.fillStyle = glyphColor;
+    ctx.font = fontSize + "px 'JetBrains Mono', monospace";
     for (var i = 0; i < drops.length; i++) {
       var char = chars.charAt(Math.floor(Math.random() * chars.length));
       ctx.fillText(char, i * fontSize, drops[i] * fontSize);

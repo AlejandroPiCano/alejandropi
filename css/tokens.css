@@ -1,40 +1,46 @@
 /* Hallmark · tokens — Alejandro Pi portfolio
- * Brand: deep emerald + gold · Playfair Display / DM Sans / JetBrains Mono
+ * Theme: Phosphor (custom) · warm charcoal + amber CRT accent · cream light theme
+ * axes: light+dark paper / high-contrast-serif display / warm-amber accent
+ * Fraunces / Hanken Grotesk / JetBrains Mono
  * Light theme is :root default; body.dark swaps the semantic layer.
  */
 
 :root {
   /* Brand anchors */
-  --color-accent:        oklch(46% 0.10 158);
-  --color-accent-strong: oklch(54% 0.11 158);
-  --color-accent-ink:    oklch(98% 0.005 158);
-  --color-gold:          oklch(74% 0.114 92);
+  --color-accent:        oklch(52% 0.115 55);
+  --color-accent-strong: oklch(58% 0.125 55);
+  --color-accent-ink:    oklch(98% 0.008 80);
+  --color-gold:          oklch(72% 0.13 78);
 
   /* Semantic — light */
-  --color-paper:     oklch(97.5% 0.006 130);
-  --color-surface:   oklch(99% 0.003 130);
-  --color-surface-2: oklch(95.5% 0.008 130);
-  --color-ink:       oklch(23% 0.015 158);
-  --color-ink-2:     oklch(45% 0.015 158);
-  --color-rule:      oklch(88% 0.01 140);
-  --color-focus:     oklch(46% 0.10 158);
+  --color-paper:     oklch(97% 0.01 85);
+  --color-surface:   oklch(99% 0.005 85);
+  --color-surface-2: oklch(94.5% 0.015 85);
+  --color-ink:       oklch(24% 0.02 55);
+  --color-ink-2:     oklch(45% 0.022 55);
+  --color-rule:      oklch(88% 0.018 80);
+  --color-focus:     oklch(52% 0.115 55);
   --color-error:     oklch(55% 0.19 27);
 
   /* Hero band — dark in both themes (brand-preserving) */
-  --color-hero-bg:    oklch(20% 0.025 160);
-  --color-hero-ink:   oklch(97% 0.005 140);
-  --color-hero-ink-2: oklch(78% 0.02 145);
-  --color-hero-rule:  oklch(38% 0.02 160);
+  --color-hero-bg:    oklch(16% 0.014 60);
+  --color-hero-ink:   oklch(96% 0.012 80);
+  --color-hero-ink-2: oklch(76% 0.03 75);
+  --color-hero-rule:  oklch(34% 0.03 65);
 
   /* Accent variants for permanently-dark surfaces (hero band) */
-  --color-accent-on-dark:        oklch(68% 0.115 158);
-  --color-accent-strong-on-dark: oklch(74% 0.12 158);
-  --color-accent-ink-on-dark:    oklch(16% 0.02 160);
-  --color-ink-on-color:          oklch(98% 0.005 158);
+  --color-accent-on-dark:        oklch(80% 0.13 75);
+  --color-accent-strong-on-dark: oklch(85% 0.135 78);
+  --color-accent-ink-on-dark:    oklch(20% 0.04 70);
+  --color-ink-on-color:          oklch(98% 0.008 80);
+
+  /* Matrix rain — js/matrix.js reads these at runtime */
+  --color-matrix-glyph: oklch(78% 0.13 75);
+  --color-matrix-fade:  rgb(20 15 9 / 0.09);
 
   /* Typography */
-  --font-display: 'Playfair Display', Georgia, 'Times New Roman', serif;
-  --font-body: 'DM Sans', system-ui, -apple-system, sans-serif;
+  --font-display: 'Fraunces', Georgia, 'Times New Roman', serif;
+  --font-body: 'Hanken Grotesk', system-ui, -apple-system, sans-serif;
   --font-mono: 'JetBrains Mono', ui-monospace, 'Cascadia Mono', monospace;
 
   --text-sm: 0.875rem;
@@ -68,9 +74,9 @@
   --radius-pill: 999px;
   --rule-hairline: 1px;
 
-  /* Elevation (kept tight and dark) */
-  --shadow-sm: 0 1px 3px oklch(20% 0.02 160 / 0.10);
-  --shadow-md: 0 6px 20px oklch(20% 0.02 160 / 0.14);
+  /* Elevation (kept tight and warm) */
+  --shadow-sm: 0 1px 3px oklch(20% 0.02 60 / 0.10);
+  --shadow-md: 0 6px 20px oklch(20% 0.02 60 / 0.14);
 
   /* Z scale */
   --z-nav: 100;
@@ -79,16 +85,16 @@
 }
 
 body.dark {
-  --color-paper:     oklch(18% 0.015 160);
-  --color-surface:   oklch(22% 0.016 160);
-  --color-surface-2: oklch(26% 0.016 160);
-  --color-ink:       oklch(94% 0.008 145);
-  --color-ink-2:     oklch(70% 0.015 150);
-  --color-rule:      oklch(32% 0.015 158);
-  --color-accent:        oklch(68% 0.115 158);
-  --color-accent-strong: oklch(74% 0.12 158);
-  --color-accent-ink:    oklch(16% 0.02 160);
-  --color-focus:     oklch(74% 0.114 92);
+  --color-paper:     oklch(17% 0.012 55);
+  --color-surface:   oklch(21% 0.014 58);
+  --color-surface-2: oklch(25% 0.016 60);
+  --color-ink:       oklch(93% 0.015 80);
+  --color-ink-2:     oklch(70% 0.025 72);
+  --color-rule:      oklch(31% 0.02 62);
+  --color-accent:        oklch(80% 0.13 75);
+  --color-accent-strong: oklch(85% 0.135 78);
+  --color-accent-ink:    oklch(20% 0.04 70);
+  --color-focus:     oklch(80% 0.13 75);
   --shadow-sm: 0 1px 3px oklch(0% 0 0 / 0.35);
   --shadow-md: 0 6px 20px oklch(0% 0 0 / 0.45);
 }

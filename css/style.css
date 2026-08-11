@@ -1,7 +1,8 @@
-/* Hallmark · pre-emit critique: P4 H4 E4 S4 R5 V4 */
+/* Hallmark · pre-emit critique: P5 H4 E5 S4 R4 V5 */
 /* Hallmark · redesign (in-place) · genre: editorial · macrostructure: existing IA preserved
- * theme: custom (emerald + gold · Playfair Display + DM Sans + JetBrains Mono)
- * nav: existing wordmark nav, collapse < 64rem · enrichment: none (typography-led hero)
+ * theme: Phosphor (custom · warm charcoal + amber CRT accent · Fraunces + Hanken Grotesk + JetBrains Mono)
+ * axes: light+dark paper / high-contrast-serif display / warm-amber accent
+ * nav: existing wordmark nav, collapse < 64rem · enrichment: amber matrix rain (token-driven)
  * tokens: css/tokens.css
  */
 
@@ -37,6 +38,11 @@ body {
 img {
   max-width: 100%;
   display: block;
+}
+
+::selection {
+  background: var(--color-accent);
+  color: var(--color-accent-ink);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -126,8 +132,9 @@ nav {
 
 .logo {
   font-family: var(--font-display);
+  font-optical-sizing: auto;
   font-size: clamp(1.05rem, 2.5vw, 1.35rem);
-  font-weight: 700;
+  font-weight: 600;
   letter-spacing: -0.01em;
   display: flex;
   align-items: center;
@@ -144,8 +151,8 @@ nav {
 
 .beta-badge {
   display: inline-block;
-  border: var(--rule-hairline) solid var(--color-gold);
-  color: var(--color-gold);
+  border: var(--rule-hairline) solid var(--color-accent);
+  color: var(--color-accent);
   padding: 0.15rem 0.6rem;
   border-radius: var(--radius-pill);
   font-size: 0.65rem;
@@ -328,8 +335,26 @@ nav {
   width: 100%;
   height: 100%;
   z-index: 0;
-  opacity: 0.5;
+  opacity: 0.45;
   pointer-events: none;
+}
+
+/* Vignette above the rain, below the copy — depth + guaranteed legibility */
+.hero-section::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(90rem 42rem at 12% 112%,
+      color-mix(in oklab, var(--color-accent) 12%, transparent),
+      transparent 62%),
+    linear-gradient(to bottom,
+      color-mix(in oklab, var(--color-hero-bg) 35%, transparent),
+      transparent 32%,
+      transparent 58%,
+      var(--color-hero-bg) 100%);
 }
 
 .hero-content {
@@ -338,7 +363,20 @@ nav {
   width: 100%;
   max-width: 80rem;
   margin: 0 auto;
-  animation: fadeInUp 0.6s var(--ease-out);
+}
+
+.hero-title,
+.hero-subtitle,
+.hero-cta {
+  animation: fadeInUp 0.7s var(--ease-out) both;
+}
+
+.hero-subtitle {
+  animation-delay: 120ms;
+}
+
+.hero-cta {
+  animation-delay: 240ms;
 }
 
 @keyframes fadeInUp {
@@ -354,11 +392,12 @@ nav {
 
 .hero-title {
   font-family: var(--font-display);
+  font-optical-sizing: auto;
   font-size: var(--text-display);
-  font-weight: 900;
+  font-weight: 640;
   color: var(--color-ink);
-  letter-spacing: -0.02em;
-  line-height: 1.05;
+  letter-spacing: -0.015em;
+  line-height: 1.04;
   max-width: 14ch;
   min-width: 0;
   overflow-wrap: anywhere;
@@ -399,7 +438,9 @@ nav {
   min-height: 48px;
   transition: background-color var(--dur-short) var(--ease-out),
               border-color var(--dur-short) var(--ease-out),
-              color var(--dur-short) var(--ease-out);
+              color var(--dur-short) var(--ease-out),
+              transform var(--dur-short) var(--ease-out),
+              box-shadow var(--dur-short) var(--ease-out);
 }
 
 .btn-primary {
@@ -410,6 +451,8 @@ nav {
 
 .btn-primary:hover {
   background: var(--color-accent-strong);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-sm);
 }
 
 .btn-primary:active {
@@ -453,8 +496,9 @@ nav {
 
 .section-title {
   font-family: var(--font-display);
+  font-optical-sizing: auto;
   font-size: var(--text-3xl);
-  font-weight: 900;
+  font-weight: 620;
   letter-spacing: -0.01em;
   line-height: 1.1;
   min-width: 0;
@@ -468,7 +512,8 @@ nav {
   width: 3.5rem;
   height: 3px;
   margin-top: var(--space-sm);
-  background: var(--color-gold);
+  border-radius: var(--radius-pill);
+  background: linear-gradient(90deg, var(--color-accent), var(--color-gold));
 }
 
 /* ============================================
@@ -501,12 +546,16 @@ nav {
   background: var(--color-surface);
   border: var(--rule-hairline) solid var(--color-rule);
   border-radius: var(--radius-card);
-  transition: border-color var(--dur-short) var(--ease-out);
+  transition: border-color var(--dur-short) var(--ease-out),
+              transform var(--dur-short) var(--ease-out),
+              box-shadow var(--dur-short) var(--ease-out);
 }
 
 @media (hover: hover) {
   .stat-item:hover {
     border-color: var(--color-accent);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-sm);
   }
 }
 
@@ -514,7 +563,7 @@ nav {
   font-family: var(--font-display);
   font-variant-numeric: tabular-nums;
   font-size: var(--text-2xl);
-  font-weight: 900;
+  font-weight: 640;
   color: var(--color-accent);
   display: block;
   line-height: 1.2;
@@ -562,19 +611,23 @@ nav {
   background: var(--color-surface);
   border: var(--rule-hairline) solid var(--color-rule);
   border-radius: var(--radius-card);
-  transition: border-color var(--dur-short) var(--ease-out);
+  transition: border-color var(--dur-short) var(--ease-out),
+              transform var(--dur-short) var(--ease-out),
+              box-shadow var(--dur-short) var(--ease-out);
 }
 
 @media (hover: hover) {
   .skill-category:hover {
     border-color: var(--color-accent);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-sm);
   }
 }
 
 .skill-category h3 {
   font-family: var(--font-display);
   font-size: var(--text-xl);
-  font-weight: 700;
+  font-weight: 600;
   color: var(--color-accent);
   margin-bottom: var(--space-lg);
   padding-bottom: var(--space-sm);
@@ -616,7 +669,7 @@ nav {
 .project-category > h3 {
   font-family: var(--font-display);
   font-size: var(--text-2xl);
-  font-weight: 700;
+  font-weight: 600;
   margin-bottom: var(--space-xl);
 }
 
@@ -693,12 +746,18 @@ nav {
   border: var(--rule-hairline) solid var(--color-rule);
   border-radius: var(--radius-card);
   overflow: hidden;
-  transition: border-color var(--dur-short) var(--ease-out);
+  transition: border-color var(--dur-short) var(--ease-out),
+              box-shadow var(--dur-short) var(--ease-out);
 }
 
 @media (hover: hover) {
   .project-card:hover {
     border-color: var(--color-accent);
+    box-shadow: var(--shadow-md);
+  }
+
+  .project-card:hover .project-img {
+    transform: scale(1.04);
   }
 }
 
@@ -714,12 +773,13 @@ nav {
   height: 100%;
   object-fit: cover;
   object-position: center;
+  transition: transform 600ms var(--ease-out);
 }
 
 .project-card h3 {
   font-family: var(--font-display);
   font-size: var(--text-xl);
-  font-weight: 700;
+  font-weight: 600;
   margin: var(--space-lg) var(--space-lg) var(--space-xs);
 }
 
@@ -787,12 +847,16 @@ nav {
   background: var(--color-surface);
   border: var(--rule-hairline) solid var(--color-rule);
   border-radius: var(--radius-card);
-  transition: border-color var(--dur-short) var(--ease-out);
+  transition: border-color var(--dur-short) var(--ease-out),
+              transform var(--dur-short) var(--ease-out),
+              box-shadow var(--dur-short) var(--ease-out);
 }
 
 @media (hover: hover) {
   .contact-item:hover {
     border-color: var(--color-accent);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-sm);
   }
 }
 
