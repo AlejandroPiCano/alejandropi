@@ -3,6 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Security -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdn.jsdelivr.net https://www.google.com/recaptcha/ https://www.gstatic.com/recaptcha/; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data: https://www.gstatic.com; frame-src https://www.google.com/recaptcha/ https://recaptcha.google.com/recaptcha/; connect-src 'self' https://api.emailjs.com; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+
   
   <!-- SEO Meta Tags -->
   <meta name="description" content="Alejandro M. Pi Cano - Full Stack Developer with 14+ years of experience in enterprise solutions, microservices, and cloud technologies. Specializing in .NET, C#, React, and Azure.">
@@ -37,7 +42,7 @@
   
   <link rel="stylesheet" href="css/tokens.css">
   <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha384-3B6NwesSXE7YJlcLI9RpRqGf2p/EgVH8BgoKTaUrmKNDkHPStTQ3EyoYjCGXaOTS" crossorigin="anonymous" referrerpolicy="no-referrer">
   
   <!-- Structured Data (JSON-LD) -->
   <script type="application/ld+json">
@@ -105,47 +110,6 @@
   <main id="main-content" role="main">
     <section id="home" class="hero-section" aria-label="Hero section">
       <canvas id="matrix-canvas" aria-hidden="true"></canvas>
-      <script>
-        (function () {
-          var canvas = document.getElementById('matrix-canvas');
-          if (!canvas) return;
-          var ctx = canvas.getContext('2d');
-          var chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*()';
-          var fontSize = 16;
-          var drops = [];
-
-          function resize() {
-            var parent = canvas.parentElement;
-            canvas.width = parent.clientWidth || window.innerWidth;
-            canvas.height = parent.clientHeight || window.innerHeight;
-            var columns = Math.ceil(canvas.width / fontSize);
-            drops = [];
-            for (var i = 0; i < columns; i++) {
-              drops[i] = Math.random() * -40;
-            }
-          }
-
-          function draw() {
-            ctx.fillStyle = 'rgba(0, 0, 0, 0.08)';
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
-            ctx.fillStyle = '#00ff41';
-            ctx.font = fontSize + 'px monospace';
-            for (var i = 0; i < drops.length; i++) {
-              var char = chars.charAt(Math.floor(Math.random() * chars.length));
-              ctx.fillText(char, i * fontSize, drops[i] * fontSize);
-              if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
-                drops[i] = 0;
-              }
-              drops[i]++;
-            }
-          }
-
-          resize();
-          setInterval(draw, 50);
-          window.addEventListener('resize', resize);
-          window.addEventListener('load', resize);
-        })();
-      </script>
       <div class="hero-content">
         <div class="title-container">
           <h1 class="hero-title">Full Stack Developer</h1>
@@ -236,7 +200,7 @@
               <div class="carousel-track" role="region" aria-live="polite">
                 <div class="carousel-slide">
                   <div class="project-card">
-                    <a href="https://clinicasteticap.netlify.app" target="_blank" class="project-link">
+                    <a href="https://clinicasteticap.netlify.app" target="_blank" rel="noopener noreferrer" class="project-link">
                       <div class="project-image">
                         <img src="images/clinica-estetica.jpg" alt="Clínica Estética P" class="project-img">
                       </div>
@@ -252,7 +216,7 @@
                 </div>
                 <div class="carousel-slide">
                   <div class="project-card">
-                    <a href="https://estherrodrigo.netlify.app/" target="_blank" class="project-link">
+                    <a href="https://estherrodrigo.netlify.app/" target="_blank" rel="noopener noreferrer" class="project-link">
                       <div class="project-image">
                         <img src="images/esther-rodrigo.jpg" alt="Esther Rodrigo Website" class="project-img">
                       </div>
@@ -268,7 +232,7 @@
                 </div>
                 <div class="carousel-slide">
                   <div class="project-card">
-                    <a href="https://dragonballwebapp.netlify.app/" target="_blank" class="project-link">
+                    <a href="https://dragonballwebapp.netlify.app/" target="_blank" rel="noopener noreferrer" class="project-link">
                       <div class="project-image">
                         <img src="images/dragonballweb.jpg" alt="Dragon Ball Website" class="project-img">
                       </div>
@@ -284,7 +248,7 @@
                 </div>
                 <div class="carousel-slide">
                   <div class="project-card">
-                    <a href="https://www.enviocuba.ca/rey/Products?depPid=0" target="_blank" class="project-link">
+                    <a href="https://www.enviocuba.ca/rey/Products?depPid=0" target="_blank" rel="noopener noreferrer" class="project-link">
                       <div class="project-image">
                         <img src="images/envio-cuba.jpg" alt="EnvioCuba" class="project-img">
                       </div>
@@ -300,7 +264,7 @@
                 </div>
                 <div class="carousel-slide">
                   <div class="project-card">
-                    <a href="https://addinformatica.com/resiplus-tablet/" target="_blank" class="project-link">
+                    <a href="https://addinformatica.com/resiplus-tablet/" target="_blank" rel="noopener noreferrer" class="project-link">
                       <div class="project-image">
                         <img src="images/resiplus-tablet.jpg" alt="ResiPlus Tablet" class="project-img">
                       </div>
@@ -316,7 +280,7 @@
                 </div>
                 <div class="carousel-slide">
                   <div class="project-card">
-                    <a href="https://addinformatica.com/resiplus-familias/" target="_blank" class="project-link">
+                    <a href="https://addinformatica.com/resiplus-familias/" target="_blank" rel="noopener noreferrer" class="project-link">
                       <div class="project-image">
                         <img src="images/resiplus-familias.jpg" alt="ResiPlus Familias" class="project-img">
                       </div>
@@ -348,7 +312,7 @@
               <div class="carousel-track" role="region" aria-live="polite">
                 <div class="carousel-slide">
                   <div class="project-card">
-                    <a href="https://play.google.com/store/apps/details?id=com.dropsnatch.game" target="_blank" class="project-link">
+                    <a href="https://play.google.com/store/apps/details?id=com.dropsnatch.game" target="_blank" rel="noopener noreferrer" class="project-link">
                       <div class="project-image">
                         <img src="images/drop-snatch.png" alt="Drop Snatch" class="project-img">
                       </div>
@@ -364,7 +328,7 @@
                 </div>
                 <div class="carousel-slide">
                   <div class="project-card">
-                    <a href="https://play.google.com/store/apps/details?id=com.pulsevault.game" target="_blank" class="project-link">
+                    <a href="https://play.google.com/store/apps/details?id=com.pulsevault.game" target="_blank" rel="noopener noreferrer" class="project-link">
                       <div class="project-image">
                         <img src="images/pulse-vault.png" alt="Pulse Vault" class="project-img">
                       </div>
@@ -380,7 +344,7 @@
                 </div>
                 <div class="carousel-slide">
                   <div class="project-card">
-                    <a href="https://play.google.com/store/apps/details?id=com.pisoftbusiness.rocketbrawl" target="_blank" class="project-link">
+                    <a href="https://play.google.com/store/apps/details?id=com.pisoftbusiness.rocketbrawl" target="_blank" rel="noopener noreferrer" class="project-link">
                       <div class="project-image">
                         <img src="images/rocket-brawl.png" alt="Rocket Brawl" class="project-img">
                       </div>
@@ -396,7 +360,7 @@
                 </div>
                 <div class="carousel-slide">
                   <div class="project-card">
-                    <a href="https://play.google.com/store/apps/details?id=com.pisoftbusiness.games.fuseraiders" target="_blank" class="project-link">
+                    <a href="https://play.google.com/store/apps/details?id=com.pisoftbusiness.games.fuseraiders" target="_blank" rel="noopener noreferrer" class="project-link">
                       <div class="project-image">
                         <img src="images/fuse-raiders.png" alt="Fuse Raiders" class="project-img">
                       </div>
@@ -412,7 +376,7 @@
                 </div>
                 <div class="carousel-slide">
                   <div class="project-card">
-                    <a href="https://www.thegreatapps.com/apps/monster-vs-archers" target="_blank" class="project-link">
+                    <a href="https://www.thegreatapps.com/apps/monster-vs-archers" target="_blank" rel="noopener noreferrer" class="project-link">
                       <div class="project-image">
                         <img src="images/monster-vs-archers.jpg" alt="Monster vs Archers" class="project-img">
                       </div>
@@ -428,7 +392,7 @@
                 </div>
                 <div class="carousel-slide">
                   <div class="project-card">
-                    <a href="https://www.thegreatapps.com/apps/whack-trump" target="_blank" class="project-link">
+                    <a href="https://www.thegreatapps.com/apps/whack-trump" target="_blank" rel="noopener noreferrer" class="project-link">
                       <div class="project-image">
                         <img src="images/whack-trump.jpg" alt="Whack Trump" class="project-img">
                       </div>
@@ -444,7 +408,7 @@
                 </div>
                 <div class="carousel-slide">
                   <div class="project-card">
-                    <a href="https://www.thegreatapps.com/apps/whack-puigdemont" target="_blank" class="project-link">
+                    <a href="https://www.thegreatapps.com/apps/whack-puigdemont" target="_blank" rel="noopener noreferrer" class="project-link">
                       <div class="project-image">
                         <img src="images/whack-puigdemont.jpg" alt="Whack Puigdemont" class="project-img">
                       </div>
@@ -460,7 +424,7 @@
                 </div>
                 <div class="carousel-slide">
                   <div class="project-card">
-                    <a href="https://www.thepopularapps.com/apps/survival-driving-india" target="_blank" class="project-link">
+                    <a href="https://www.thepopularapps.com/apps/survival-driving-india" target="_blank" rel="noopener noreferrer" class="project-link">
                       <div class="project-image">
                         <img src="images/survival-driving.jpg" alt="Survival Driving India" class="project-img">
                       </div>
@@ -476,7 +440,7 @@
                 </div>
                 <div class="carousel-slide">
                   <div class="project-card">
-                    <a href="https://www.thepopularapps.com/apps/dragon-space-survival" target="_blank" class="project-link">
+                    <a href="https://www.thepopularapps.com/apps/dragon-space-survival" target="_blank" rel="noopener noreferrer" class="project-link">
                       <div class="project-image">
                         <img src="images/dragon-space.jpg" alt="Dragon Space Survival" class="project-img">
                       </div>
@@ -492,7 +456,7 @@
                 </div>
                 <div class="carousel-slide">
                   <div class="project-card">
-                    <a href="https://www.thepopularapps.com/apps/run-raccoon" target="_blank" class="project-link">
+                    <a href="https://www.thepopularapps.com/apps/run-raccoon" target="_blank" rel="noopener noreferrer" class="project-link">
                       <div class="project-image">
                         <img src="images/run-raccoon.jpg" alt="Run Raccoon!" class="project-img">
                       </div>
@@ -598,7 +562,8 @@
     </div>
   </footer>
 
-  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3.12.1/dist/email.min.js" integrity="sha384-VDbnsk/qjpIVHPQMkJiROI+vW/7cw0k8TFYVLUabm7EWoLEDwcXh09XQ6gQ86Y0B" crossorigin="anonymous"></script>
   <script src="js/script.js"></script>
+  <script src="js/matrix.js"></script>
 </body>
 </html>

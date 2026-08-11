@@ -1,4 +1,17 @@
 // ============================================
+// CLICKJACKING PROTECTION (FRAME BUSTER)
+// ============================================
+// GitHub Pages cannot send X-Frame-Options / frame-ancestors headers,
+// so break out of any hostile framing at the script level instead.
+if (window.top !== window.self) {
+  try {
+    window.top.location = window.self.location;
+  } catch (e) {
+    document.documentElement.style.display = 'none';
+  }
+}
+
+// ============================================
 // THEME TOGGLE WITH ACCESSIBILITY
 // ============================================
 document.addEventListener('DOMContentLoaded', () => {
@@ -134,8 +147,10 @@ if (typeof emailjs !== 'undefined') {
 // --- CAPTCHA Initialization ---
 function loadCaptcha() {
   if (window.grecaptcha) {
+    // Site keys are public by design; the secret key must only live in the
+    // EmailJS template settings (server-side CAPTCHA validation).
     grecaptcha.render('captcha-container', {
-      'sitekey': '6Lel-CErAAAAAA41QSfwuAB2pjHCusfi5nq126qm' // Demo key, replace with your own for production
+      'sitekey': '6Lel-CErAAAAAA41QSfwuAB2pjHCusfi5nq126qm'
     });
   }
 }
