@@ -696,6 +696,7 @@ nav {
 .carousel-container {
   position: relative;
   width: 100%;
+  container-type: inline-size;
 }
 
 .carousel {
@@ -727,7 +728,8 @@ nav {
 
 .carousel-btn {
   position: absolute;
-  top: 50%;
+  /* Center over the 16:9 image, not the full card (title/desc) */
+  top: calc(100cqw * 9 / 32);
   transform: translateY(-50%);
   width: 44px;
   height: 44px;
