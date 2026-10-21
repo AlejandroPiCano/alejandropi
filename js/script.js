@@ -364,16 +364,27 @@ function setupCarousel(carousel) {
   let slideWidth = slides[0].offsetWidth;
   let autoScrollInterval;
 
-  function updateCarousel(announce = false) {
-    track.style.transform = `translateX(-${currentSlide * slideWidth}px)`;
+  function isGridMode() {
+    return window.innerWidth >= 768;
+  }
 
-    // Update ARIA attributes
+  function updateCarousel(announce = false) {
+    var grid = isGridMode();
+    if (grid) {
+      track.style.transform = '';
+    } else {
+      track.style.transform = `translateX(-${currentSlide * slideWidth}px)`;
+    }
+
     slides.forEach((slide, index) => {
-      slide.setAttribute('aria-hidden', index !== currentSlide);
+      if (grid) {
+        slide.removeAttribute('aria-hidden');
+      } else {
+        slide.setAttribute('aria-hidden', index !== currentSlide);
+      }
     });
 
-    // Announce to screen readers
-    if (announce) {
+    if (announce && !grid) {
       const projectName = slides[currentSlide].querySelector('h3')?.textContent || '';
       announceToScreenReader(`Showing project ${currentSlide + 1} of ${slides.length}: ${projectName}`);
     }
@@ -427,6 +438,7 @@ function setupCarousel(carousel) {
 
   function startAutoScroll() {
     if (prefersReducedMotion) return;
+    if (isGridMode()) return;
     autoScrollInterval = setInterval(() => nextSlide(false), 5000);
   }
 
@@ -455,10 +467,11 @@ function setupCarousel(carousel) {
     }
   });
 
-  // Update slide width on window resize
   function updateSlideWidth() {
     slideWidth = slides[0].offsetWidth;
+    stopAutoScroll();
     updateCarousel(false);
+    startAutoScroll();
   }
 
   window.addEventListener('resize', updateSlideWidth);
@@ -482,3 +495,27 @@ document.addEventListener('DOMContentLoaded', () => {
   const carousels = document.querySelectorAll('.carousel');
   carousels.forEach(setupCarousel);
 });
+
+// ============================================
+// SCROLL REVEAL (INTERSECTION OBSERVER)
+// ============================================
+(function () {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  var revealElements = document.querySelectorAll('[data-reveal]');
+  if (!revealElements.length) return;
+
+  var observer = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('revealed');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, {
+    threshold: 0.12,
+    rootMargin: '0px 0px -50px 0px'
+  });
+
+  revealElements.forEach(function (el) { observer.observe(el); });
+})();
