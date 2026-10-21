@@ -33,15 +33,20 @@ jobs:
           cp index.html robots.txt sitemap.xml CNAME app-ads.txt _site/
       - name: Inject GA measurement ID
         # Keep G-XXXXXXXX out of the public git repo; inject only into the Pages artifact.
+        # Required: repo Settings → Secrets and variables → Actions → GA_MEASUREMENT_ID
         env:
           GA_MEASUREMENT_ID: ${{ secrets.GA_MEASUREMENT_ID }}
         run: |
           if [ -z "$GA_MEASUREMENT_ID" ]; then
-            echo "::warning::GA_MEASUREMENT_ID secret is not set. Analytics will stay disabled on this deploy."
-            exit 0
+            echo "::error::Missing secret GA_MEASUREMENT_ID."
+            echo "Create it at: Settings → Secrets and variables → Actions → New repository secret"
+            echo "Name must be exactly: GA_MEASUREMENT_ID"
+            echo "Value must be your GA4 Measurement ID (G-XXXXXXXX)."
+            echo "Then re-run this workflow."
+            exit 1
           fi
           if [[ ! "$GA_MEASUREMENT_ID" =~ ^G-[A-Z0-9]+$ ]]; then
-            echo "::error::GA_MEASUREMENT_ID must look like G-XXXXXXXX (got invalid value)."
+            echo "::error::GA_MEASUREMENT_ID must look like G-XXXXXXXX (invalid value)."
             exit 1
           fi
           python3 - <<'PY'

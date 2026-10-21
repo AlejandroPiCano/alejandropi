@@ -1,59 +1,59 @@
 # Alejandro M. Pi Cano — Portfolio
 
-Portfolio estático de **Alejandro M. Pi Cano**, Full Stack Developer con más de 15 años de experiencia en soluciones empresariales, microservicios y cloud.
+Static portfolio for **Alejandro M. Pi Cano**, a Full Stack Developer with 15+ years of experience building enterprise solutions, microservices, and cloud systems.
 
-**Sitio en vivo:** [https://alejandropi.is-a.dev/](https://alejandropi.is-a.dev/)
+**Live site:** [https://alejandropi.is-a.dev/](https://alejandropi.is-a.dev/)
 
-## Sobre el proyecto
+## About
 
-Sitio de una sola página (HTML/CSS/JS) con secciones Home, About, Skills, Projects y Contact. Incluye proyectos web (Angular, Next.js, ASP.NET) y juegos (Phaser, Unity), formulario de contacto con EmailJS + reCAPTCHA, y analytics de Google Analytics 4 inyectado en el despliegue.
+A single-page site (HTML/CSS/JS) with Home, About, Skills, Projects, and Contact sections. It showcases web projects (Angular, Next.js, ASP.NET) and games (Phaser, Unity), a contact form powered by EmailJS + reCAPTCHA, and Google Analytics 4 injected at deploy time.
 
-## Características
+## Features
 
-- Diseño responsive con tema claro/oscuro (persistencia en `localStorage`)
-- Animación Matrix en el hero (`js/matrix.js`) y scroll reveal
-- Carruseles de proyectos (web y games)
-- Formulario de contacto con validación, consentimiento GDPR, reCAPTCHA y notificaciones toast
-- Accesibilidad: skip link, ARIA, anuncios a lectores de pantalla, focus visible
+- Responsive layout with light/dark theme (persisted in `localStorage`)
+- Matrix rain hero animation (`js/matrix.js`) and scroll reveal
+- Project carousels (web and games)
+- Contact form with validation, GDPR consent, reCAPTCHA, and toast notifications
+- Accessibility: skip link, ARIA, screen-reader announcements, visible focus
 - SEO: meta tags, Open Graph, Twitter Cards, JSON-LD, `sitemap.xml`, `robots.txt`
-- Seguridad: CSP, frame buster (clickjacking), `referrer` estricto
-- Despliegue automático a GitHub Pages con inyección segura del ID de GA
+- Security: CSP, frame buster (clickjacking), strict referrer policy
+- Automated GitHub Pages deploy with safe GA measurement ID injection
 
 ## Stack
 
-| Capa | Tecnología |
-|------|------------|
-| Markup | HTML5 semántico |
-| Estilos | CSS custom properties (`css/tokens.css`), Fraunces / Hanken Grotesk / JetBrains Mono |
+| Layer | Technology |
+|-------|------------|
+| Markup | Semantic HTML5 |
+| Styles | CSS custom properties (`css/tokens.css`), Fraunces / Hanken Grotesk / JetBrains Mono |
 | Scripts | Vanilla JS (`js/script.js`, `js/matrix.js`, `js/analytics.js`) |
-| Contacto | [EmailJS](https://www.emailjs.com/) + Google reCAPTCHA |
-| Analytics | Google Analytics 4 (inyectado en CI) |
-| Hosting | GitHub Pages + dominio custom (`CNAME`) |
+| Contact | [EmailJS](https://www.emailjs.com/) + Google reCAPTCHA |
+| Analytics | Google Analytics 4 (injected in CI) |
+| Hosting | GitHub Pages + custom domain (`CNAME`) |
 
-## Estructura
+## Structure
 
 ```
 alejandropi/
-├── index.html              # Página principal
+├── index.html              # Main page
 ├── css/
-│   ├── tokens.css          # Design tokens (tema claro/oscuro)
-│   └── style.css           # Estilos del sitio
+│   ├── tokens.css          # Design tokens (light/dark theme)
+│   └── style.css           # Site styles
 ├── js/
-│   ├── script.js           # Tema, nav, carruseles, formulario, a11y
-│   ├── matrix.js           # Animación del hero
-│   └── analytics.js        # GA4 (placeholder → ID en deploy)
-├── images/                 # Capturas de proyectos
+│   ├── script.js           # Theme, nav, carousels, form, a11y
+│   ├── matrix.js           # Hero animation
+│   └── analytics.js        # GA4 (placeholder → ID at deploy)
+├── images/                 # Project screenshots
 ├── .github/workflows/
-│   └── deploy.yml          # Deploy a GitHub Pages
+│   └── deploy.yml          # GitHub Pages deploy
 ├── CNAME                   # alejandropi.is-a.dev
 ├── robots.txt
 ├── sitemap.xml
 └── app-ads.txt
 ```
 
-## Desarrollo local
+## Local development
 
-No hace falta build ni bundler. Cualquier servidor estático sirve:
+No build step or bundler required. Any static server works:
 
 ```bash
 # Python
@@ -63,26 +63,26 @@ python -m http.server 8080
 npx serve .
 ```
 
-Abre `http://localhost:8080` en el navegador.
+Open `http://localhost:8080` in your browser.
 
-> El formulario de contacto y reCAPTCHA requieren las claves configuradas y red; en local pueden fallar si el origen no está autorizado.
+> The contact form and reCAPTCHA need configured keys and network access; they may fail locally if the origin is not authorized.
 
-## Despliegue
+## Deployment
 
-Cada push a `main` (o un `workflow_dispatch`) ejecuta [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml):
+Every push to `main` (or a `workflow_dispatch`) runs [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml):
 
-1. Copia solo los ficheros públicos a `_site/`
-2. Sustituye `__GA_MEASUREMENT_ID__` en `analytics.js` con el secret `GA_MEASUREMENT_ID`
-3. Publica el artefacto en GitHub Pages
+1. Copies only public site files into `_site/`
+2. Replaces `__GA_MEASUREMENT_ID__` in `analytics.js` with the `GA_MEASUREMENT_ID` secret
+3. Publishes the artifact to GitHub Pages
 
-**Secret requerido (opcional):** `GA_MEASUREMENT_ID` — formato `G-XXXXXXXX`. Si no está definido, el deploy continúa y analytics queda desactivado.
+**Optional secret:** `GA_MEASUREMENT_ID` — format `G-XXXXXXXX`. If unset, deploy continues and analytics stays disabled.
 
-## Contacto
+## Contact
 
 - Email: [alejandro.pi87@gmail.com](mailto:alejandro.pi87@gmail.com)
 - LinkedIn: [alejandro-m-pi-cano](https://www.linkedin.com/in/alejandro-m-pi-cano)
 - GitHub: [AlejandroPiCano](https://github.com/AlejandroPiCano)
 
-## Licencia
+## License
 
-© Alejandro M. Pi Cano. Todos los derechos reservados.
+© Alejandro M. Pi Cano. All rights reserved.
