@@ -264,6 +264,10 @@ if (contactForm) {
 
       // Send email using EmailJS
       await emailjs.send('AlejandroPiPortfolio', 'template_vnt432a', data);
+
+      if (typeof window.trackPortfolioEvent === 'function') {
+        window.trackPortfolioEvent('contact_submit', { status: 'success' });
+      }
       
       // Show success message
       showToast('Thank you for your message! I will get back to you soon.', 'success');

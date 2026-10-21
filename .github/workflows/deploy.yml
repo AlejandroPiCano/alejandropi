@@ -31,6 +31,32 @@ jobs:
           mkdir _site
           cp -r css js images _site/
           cp index.html robots.txt sitemap.xml CNAME app-ads.txt _site/
+      - name: Inject GA measurement ID
+        # Keep G-XXXXXXXX out of the public git repo; inject only into the Pages artifact.
+        env:
+          GA_MEASUREMENT_ID: ${{ secrets.GA_MEASUREMENT_ID }}
+        run: |
+          if [ -z "$GA_MEASUREMENT_ID" ]; then
+            echo "::warning::GA_MEASUREMENT_ID secret is not set. Analytics will stay disabled on this deploy."
+            exit 0
+          fi
+          if [[ ! "$GA_MEASUREMENT_ID" =~ ^G-[A-Z0-9]+$ ]]; then
+            echo "::error::GA_MEASUREMENT_ID must look like G-XXXXXXXX (got invalid value)."
+            exit 1
+          fi
+          python3 - <<'PY'
+          import os
+          from pathlib import Path
+
+          measurement_id = os.environ["GA_MEASUREMENT_ID"]
+          path = Path("_site/js/analytics.js")
+          text = path.read_text(encoding="utf-8")
+          placeholder = "__GA_MEASUREMENT_ID__"
+          if placeholder not in text:
+              raise SystemExit("analytics.js placeholder missing; refusing to deploy")
+          path.write_text(text.replace(placeholder, measurement_id), encoding="utf-8")
+          print("Injected GA measurement ID into analytics.js")
+          PY
       - name: Upload artifact
         uses: actions/upload-pages-artifact@56afc609e74202658d3ffba0e8f6dda462b719fa # v3
         with:
