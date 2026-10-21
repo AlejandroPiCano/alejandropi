@@ -6,6 +6,8 @@
  */
 
 :root {
+  color-scheme: light;
+
   /* Brand anchors */
   --color-accent:        oklch(52% 0.115 55);
   --color-accent-strong: oklch(58% 0.125 55);
@@ -85,6 +87,7 @@
 }
 
 body.dark {
+  color-scheme: dark;
   --color-paper:     oklch(17% 0.012 55);
   --color-surface:   oklch(21% 0.014 58);
   --color-surface-2: oklch(25% 0.016 60);

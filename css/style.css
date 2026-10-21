@@ -31,6 +31,8 @@ body {
   background-color: var(--color-paper);
   color: var(--color-ink);
   overflow-x: clip;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -398,6 +400,7 @@ nav {
   color: var(--color-ink);
   letter-spacing: -0.015em;
   line-height: 1.04;
+  text-wrap: balance;
   max-width: 14ch;
   min-width: 0;
   overflow-wrap: anywhere;
@@ -501,6 +504,7 @@ nav {
   font-weight: 620;
   letter-spacing: -0.01em;
   line-height: 1.1;
+  text-wrap: balance;
   min-width: 0;
   overflow-wrap: anywhere;
   margin-bottom: var(--space-2xl);
@@ -763,13 +767,15 @@ nav {
   border-radius: var(--radius-card);
   overflow: hidden;
   transition: border-color var(--dur-short) var(--ease-out),
-              box-shadow var(--dur-short) var(--ease-out);
+              box-shadow var(--dur-short) var(--ease-out),
+              transform var(--dur-short) var(--ease-out);
 }
 
 @media (hover: hover) {
   .project-card:hover {
     border-color: var(--color-accent);
     box-shadow: var(--shadow-md);
+    transform: translateY(-4px);
   }
 
   .project-card:hover .project-img {
@@ -1085,6 +1091,10 @@ footer {
 .footer-content p {
   color: var(--color-ink-2);
   font-size: var(--text-sm);
+}
+
+.heart-icon {
+  color: var(--color-error);
 }
 
 .social-links {

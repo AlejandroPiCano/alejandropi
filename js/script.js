@@ -258,7 +258,7 @@ if (contactForm) {
       // Show loading state
       const submitButton = contactForm.querySelector('button[type="submit"]');
       const originalText = submitButton.textContent;
-      submitButton.textContent = 'Sending...';
+      submitButton.textContent = 'Sending…';
       submitButton.disabled = true;
       submitButton.setAttribute('aria-busy', 'true');
 
