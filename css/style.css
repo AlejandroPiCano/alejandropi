@@ -640,6 +640,22 @@ nav {
   border-bottom: var(--rule-hairline) solid var(--color-rule);
 }
 
+.section-lead {
+  font-size: var(--text-md);
+  color: var(--color-ink-2);
+  max-width: 42rem;
+  margin: calc(var(--space-md) * -1) auto var(--space-2xl);
+  text-align: center;
+  line-height: 1.6;
+}
+
+.skill-desc {
+  font-size: var(--text-sm);
+  color: var(--color-ink-2);
+  line-height: 1.55;
+  margin: calc(var(--space-md) * -1) 0 var(--space-md);
+}
+
 .skill-list {
   list-style: none;
   display: flex;
