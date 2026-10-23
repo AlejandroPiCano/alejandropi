@@ -1,103 +1,52 @@
-/* Hallmark · tokens — Alejandro Pi portfolio
- * Theme: Phosphor (custom) · warm charcoal + amber CRT accent · cream light theme
- * axes: light+dark paper / high-contrast-serif display / warm-amber accent
- * Fraunces / Hanken Grotesk / JetBrains Mono
- * Light theme is :root default; body.dark swaps the semantic layer.
+/* Tokens: Alejandro Pi portfolio
+ * Direction: The dark room (tasteskill seed 518261411)
+ * Type: Newsreader, one family. Palette: warm black, gold.
  */
 
 :root {
-  color-scheme: light;
+  color-scheme: dark;
 
-  /* Brand anchors */
-  --color-accent:        oklch(52% 0.115 55);
-  --color-accent-strong: oklch(58% 0.125 55);
-  --color-accent-ink:    oklch(98% 0.008 80);
-  --color-gold:          oklch(72% 0.13 78);
+  /* Colour roles */
+  --bg:         #0c0a08;
+  --surface:    #181512;
+  --surface-2:  #221e1a;
+  --ink:        #f1f0ee;
+  --muted:      #aba7a2;
+  --accent:     #c9a45a;
+  --accent-hover: #d9b871;
+  --accent-ink: #0c0a08;
+  --error:      #ef8a7a;
 
-  /* Semantic — light */
-  --color-paper:     oklch(97% 0.01 85);
-  --color-surface:   oklch(99% 0.005 85);
-  --color-surface-2: oklch(94.5% 0.015 85);
-  --color-ink:       oklch(24% 0.02 55);
-  --color-ink-2:     oklch(45% 0.022 55);
-  --color-rule:      oklch(88% 0.018 80);
-  --color-focus:     oklch(52% 0.115 55);
-  --color-error:     oklch(55% 0.19 27);
+  /* Inverse field (contact) */
+  --inv-bg:     #e4e3e1;
+  --inv-ink:    #0c0a08;
+  --inv-muted:  #4a4540;
 
-  /* Hero band — dark in both themes (brand-preserving) */
-  --color-hero-bg:    oklch(16% 0.014 60);
-  --color-hero-ink:   oklch(96% 0.012 80);
-  --color-hero-ink-2: oklch(76% 0.03 75);
-  --color-hero-rule:  oklch(34% 0.03 65);
+  /* Type */
+  --font: 'Newsreader', 'Iowan Old Style', Georgia, serif;
+  --font-code: ui-monospace, 'Cascadia Mono', 'SF Mono', Consolas, monospace; /* taste-skill-ignore: only the data-ui terminal's <pre><code> */
 
-  /* Accent variants for permanently-dark surfaces (hero band) */
-  --color-accent-on-dark:        oklch(80% 0.13 75);
-  --color-accent-strong-on-dark: oklch(85% 0.135 78);
-  --color-accent-ink-on-dark:    oklch(20% 0.04 70);
-  --color-ink-on-color:          oklch(98% 0.008 80);
+  --step-small:   clamp(0.875rem, 0.85rem + 0.1vw, 0.9375rem);
+  --step-body:    clamp(1.125rem, 1.05rem + 0.3vw, 1.3125rem);
+  --step-lead:    clamp(1.25rem, 1.1rem + 0.7vw, 1.625rem);
+  --step-head:    clamp(2rem, 1.2rem + 2.4vw, 3.5rem);
+  --step-display: clamp(2.5rem, 0.6rem + 5.4vw, 6rem);
 
-  /* Matrix rain — js/matrix.js reads these at runtime */
-  --color-matrix-glyph: oklch(78% 0.13 75);
-  --color-matrix-fade:  rgb(20 15 9 / 0.09);
-
-  /* Typography */
-  --font-display: 'Fraunces', Georgia, 'Times New Roman', serif;
-  --font-body: 'Hanken Grotesk', system-ui, -apple-system, sans-serif;
-  --font-mono: 'JetBrains Mono', ui-monospace, 'Cascadia Mono', monospace;
-
-  --text-sm: 0.875rem;
-  --text-md: 1rem;
-  --text-lg: 1.125rem;
-  --text-xl: 1.375rem;
-  --text-2xl: 1.75rem;
-  --text-3xl: clamp(2rem, 3vw + 1rem, 3.25rem);
-  --text-display: clamp(2.75rem, 6vw + 1rem, 5.5rem);
-
-  /* 4-pt spacing scale */
-  --space-2xs: 0.25rem;
-  --space-xs: 0.5rem;
-  --space-sm: 0.75rem;
-  --space-md: 1rem;
-  --space-lg: 1.5rem;
-  --space-xl: 2rem;
-  --space-2xl: 3rem;
-  --space-3xl: 4.5rem;
-  --space-4xl: 7rem;
+  /* Frame */
+  --margin: clamp(1.25rem, 2.1vw, 2rem);
+  --gutter: clamp(1rem, 1.7vw, 1.5rem);
+  --col: calc((100vw - 2 * var(--margin) - 11 * var(--gutter)) / 12);
+  --section-gap: clamp(6rem, 3rem + 9vw, 13rem);
+  --header-h: 4rem;
 
   /* Motion */
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
-  --dur-short: 180ms;
-  --dur-med: 320ms;
+  --dur-short: 200ms;
+  --dur-med: 300ms;
+  --dur-enter: 800ms;
+  --dur-fade: 1600ms;
 
-  /* Shape */
-  --radius-card: 14px;
-  --radius-input: 10px;
-  --radius-pill: 999px;
-  --rule-hairline: 1px;
-
-  /* Elevation (kept tight and warm) */
-  --shadow-sm: 0 1px 3px oklch(20% 0.02 60 / 0.10);
-  --shadow-md: 0 6px 20px oklch(20% 0.02 60 / 0.14);
-
-  /* Z scale */
-  --z-nav: 100;
-  --z-menu: 200;
+  --z-header: 100;
   --z-toast: 300;
-}
-
-body.dark {
-  color-scheme: dark;
-  --color-paper:     oklch(17% 0.012 55);
-  --color-surface:   oklch(21% 0.014 58);
-  --color-surface-2: oklch(25% 0.016 60);
-  --color-ink:       oklch(93% 0.015 80);
-  --color-ink-2:     oklch(70% 0.025 72);
-  --color-rule:      oklch(31% 0.02 62);
-  --color-accent:        oklch(80% 0.13 75);
-  --color-accent-strong: oklch(85% 0.135 78);
-  --color-accent-ink:    oklch(20% 0.04 70);
-  --color-focus:     oklch(80% 0.13 75);
-  --shadow-sm: 0 1px 3px oklch(0% 0 0 / 0.35);
-  --shadow-md: 0 6px 20px oklch(0% 0 0 / 0.45);
 }

@@ -46,26 +46,19 @@
   };
 
   function projectLabel(anchor) {
-    var card = anchor.closest('.project-card');
-    if (!card) return '';
-    var title = card.querySelector('h3');
-    return title ? title.textContent.trim() : '';
+    var project = anchor.closest('[data-project]');
+    return project ? project.getAttribute('data-project') : '';
   }
 
   function projectCategory(anchor) {
-    var category = anchor.closest('.project-category');
-    if (!category) return 'project';
-    var heading = category.querySelector(':scope > h3');
-    var text = heading ? heading.textContent.trim().toLowerCase() : '';
-    if (text.indexOf('game') !== -1) return 'game';
-    if (text.indexOf('web') !== -1) return 'web';
-    return text || 'project';
+    var category = anchor.closest('[data-category]');
+    return category ? category.getAttribute('data-category') : 'project';
   }
 
   function classifyLink(anchor) {
     var href = anchor.getAttribute('href') || '';
 
-    if (anchor.classList.contains('project-link') || anchor.closest('.project-card')) {
+    if (anchor.closest('[data-project]')) {
       return {
         event: 'project_click',
         params: {
